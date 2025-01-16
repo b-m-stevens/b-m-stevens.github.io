@@ -48,3 +48,14 @@ img {
   border: 1px solid #ccc;
   border-radius: 5px;
 }
+.rounded-link {
+  border: 5px solid #ddd; /* Solid border with a light gray color */
+  border-radius: 10px; /* Set the rounded corner radius */
+  padding: 10px 20px; /* Add some padding for better visual separation */
+  text-decoration: none; /* Remove underline decoration */
+  color: #000; /* Set the text color to black */
+}
+
+.rounded-link:hover {
+  background-color: #eee; /* Add a hover effect with a light background */
+}
