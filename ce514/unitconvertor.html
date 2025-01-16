@@ -1,1 +1,78 @@
 This is Becky Stevens' Unit Convertor
+
+<html>
+<head>
+<title>Simple Time Clock</title>
+</head>
+<body>
+
+<h1>Time Clock</h1>
+<div id="clock"></div>
+
+<script>
+function updateTime() {
+  const now = new Date();
+  const hours = String(now.getHours()).padStart(2, '0');
+  const minutes = String(now.getMinutes()).padStart(2, '0');
+  const seconds = String(now.getSeconds()).padStart(2, '0');
+  document.getElementById("clock").innerHTML = hours + ":" + minutes + ":" + seconds;
+}
+
+// Update time every second
+setInterval(updateTime, 1000); 
+
+// Initial call to display time immediately
+updateTime();
+
+function convertUnits (){
+	let inputnumber = document.getElementById("inputnumber").value
+  let inputunits = document.getElementById("units").value
+  let outputnumber = 0
+  let conversion = 0
+  if(inputunits=="mm"){
+  	conversion = 0.001
+  } 
+  if(inputunits=="m"){
+  	conversion = 1
+  }  
+  if(inputunits=="in"){
+  	conversion = 0.0254
+  } 
+  if(inputunits=="ft"){
+  	conversion = 0.3408
+  }
+  if(inputunits=="mi"){
+  	conversion = 1609.34
+  }
+  
+  outputnumber = inputnumber * conversion
+  
+  document.getElementById("outputvalue").innerHTML = outputnumber + " meters"
+}
+</script>
+
+<h1>
+Unit Converter
+</h1>
+
+Input Value: <input type="text" id="inputnumber">
+
+<br>
+Input Units
+  <select id="units" name="units">
+    <option value="in">Inches</option>
+    <option value="mm">Millimeters</option>
+    <option value="mi">Miles</option>
+    <option value="ft">Feet</option>
+  </select>
+  
+  <br>
+  
+<input type="submit" onclick="convertUnits()">
+<p id="outputvalue">
+12 meters
+</p>
+
+
+</body>
+</html>
