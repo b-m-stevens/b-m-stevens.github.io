@@ -1,53 +1,48 @@
-This is Becky Stevens' Unit Convertor
-
 <html>
 <head>
-<title>Simple Time Clock</title>
+<title>Becky's Unit Converter</title>
 </head>
 <body>
 
-<h1>Time Clock</h1>
-<div id="clock"></div>
-
 <script>
-function updateTime() {
-  const now = new Date();
-  const hours = String(now.getHours()).padStart(2, '0');
-  const minutes = String(now.getMinutes()).padStart(2, '0');
-  const seconds = String(now.getSeconds()).padStart(2, '0');
-  document.getElementById("clock").innerHTML = hours + ":" + minutes + ":" + seconds;
+function convertUnits() {
+    let inputnumber = parseFloat(document.getElementById("inputnumber").value);
+    let inputunits = document.getElementById("units").value;
+    let outputunits = document.getElementById("outputunits").value;
+    
+    let conversionFactors = {
+        "mm": 0.001,
+        "m": 1,
+        "in": 0.0254,
+        "ft": 0.3048,
+        "mi": 1609.34
+    };
+
+    // Convert input to meters first
+    let inputInMeters = inputnumber * conversionFactors[inputunits];
+    
+    // Now convert from meters to the selected output unit
+    let outputnumber = 0;
+    if (outputunits == "mm") {
+        outputnumber = inputInMeters / 0.001;
+    } else if (outputunits == "m") {
+        outputnumber = inputInMeters;
+    } else if (outputunits == "in") {
+        outputnumber = inputInMeters / 0.0254;
+    } else if (outputunits == "ft") {
+        outputnumber = inputInMeters / 0.3048;
+    } else if (outputunits == "mi") {
+        outputnumber = inputInMeters / 1609.34;
+    }
+    
+    // Update the output value in the input field
+    document.getElementById("outputvalue").value = outputnumber + " " + outputunits;
 }
 
-// Update time every second
-setInterval(updateTime, 1000); 
-
-// Initial call to display time immediately
-updateTime();
-
-function convertUnits (){
-	let inputnumber = document.getElementById("inputnumber").value
-  let inputunits = document.getElementById("units").value
-  let outputnumber = 0
-  let conversion = 0
-  if(inputunits=="mm"){
-  	conversion = 0.001
-  } 
-  if(inputunits=="m"){
-  	conversion = 1
-  }  
-  if(inputunits=="in"){
-  	conversion = 0.0254
-  } 
-  if(inputunits=="ft"){
-  	conversion = 0.3408
-  }
-  if(inputunits=="mi"){
-  	conversion = 1609.34
-  }
-  
-  outputnumber = inputnumber * conversion
-  
-  document.getElementById("outputvalue").innerHTML = outputnumber + " meters"
+function updateInputFromOutput() {
+    let output = document.getElementById("outputvalue").value;
+    let inputnumber = output.split(' ')[0]; // Extract the numeric value
+    document.getElementById("inputnumber").value = inputnumber;
 }
 </script>
 
@@ -58,21 +53,32 @@ Unit Converter
 Input Value: <input type="text" id="inputnumber">
 
 <br>
-Input Units
-  <select id="units" name="units">
+Input Units:
+<select id="units" name="units">
     <option value="in">Inches</option>
     <option value="mm">Millimeters</option>
     <option value="mi">Miles</option>
     <option value="ft">Feet</option>
-  </select>
-  
-  <br>
-  
-<input type="submit" onclick="convertUnits()">
-<p id="outputvalue">
-12 meters
-</p>
+</select>
 
+<br><br>
+
+Output Units:
+<select id="outputunits" name="outputunits">
+    <option value="mm">Millimeters</option>
+    <option value="m">Meters</option>
+    <option value="in">Inches</option>
+    <option value="ft">Feet</option>
+    <option value="mi">Miles</option>
+</select>
+
+<br><br>
+
+<input type="submit" onclick="convertUnits()">
+
+<br><br>
+
+Output Value: <input type="text" id="outputvalue" value="12 m" onchange="updateInputFromOutput()" />
 
 </body>
 </html>
