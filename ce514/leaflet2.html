@@ -25,12 +25,32 @@
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
 
   <script>
-    // Your Leaflet JavaScript code to initialize the map goes here
+    // Define some example markers with popups
+    var markers = [
+      {
+        location: [38.8338, -104.8214], // Coordinates for Garden of the Gods
+        popupContent: "<h3>My House, In the middle of the street</h3><p>Latitude: xx.xxxx, Longitude: -xxx.xxxx</p>"
+      },
+      {
+        location: [38.9601, -104.8398], // Coordinates for Colorado Springs Pioneers Museum
+        popupContent: "<h3>Colorado Springs Pioneers Museum</h3><p>Latitude: 38.9601, Longitude: -104.8398</p>"
+      },
+      // Add more markers here with their respective locations and popup content
+    ];
+
+    // Initialize the map
     var map = L.map('map').setView([38.9514, -104.773678], 13); // Centered on northern Colorado Springs, CO, USA
 
+    // Add a tile layer
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
         attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
     }).addTo(map);
+
+    // Add markers with popups to the map
+    for (var i = 0; i < markers.length; i++) {
+      var marker = L.marker(markers[i].location).addTo(map);
+      marker.bindPopup(markers[i].popupContent);
+    }
   </script>
 
 </body>
