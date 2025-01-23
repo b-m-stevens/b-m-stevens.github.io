@@ -1,14 +1,16 @@
 /* Basic Styling */
 body {
-  font-family: sans-serif;
+  font-family: Verdana;
   margin: 0;
   padding: 20px;
   text-align: center; /* Center the entire page content */
+  background-color: #FFEBCD;
 }
 
 /* Header Styling */
 header {
   margin-bottom: 20px; 
+  text-align: center;
 }
 
 h1 {
