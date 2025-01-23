@@ -59,3 +59,13 @@ img {
 .rounded-link:hover {
   background-color: #eee; /* Add a hover effect with a light background */
 }
+/* Button Styling */
+.button {
+      display: inline-block;
+      padding: 10px 20px;
+      border: 2px solid #ccc; /* Light grey border */
+      border-radius: 5px; /* Rounded corners */
+      text-decoration: none;
+      color: #333; /* Dark grey text */
+      margin-top: 20px; 
+    }
