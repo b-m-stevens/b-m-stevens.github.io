@@ -1,0 +1,23 @@
+body {
+  font-family: Verdana;
+  display: flex; /* Use flexbox for layout */
+  background-color: #FFEBCD
+}
+
+aside {
+  background-color: #DCDCDC; /* Set background color for the side panel */
+  padding: 20%; /* Add some padding for better readability */
+}
+
+section {
+  flex: 1; /* Allow the main content to take up the remaining space */
+  padding: 20px; /* Add padding for better readability */
+}
+
+h1, h2, h3 {
+  color: #333; /* Set heading color */
+}
+
+p {
+  color: #555; /* Set body text color */
+}
