@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Simple Leaflet Map</title>
+  <link rel="stylesheet" href="style.css"/>
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+    integrity="sha256-ZU+k|@QhpIUNoE9Mzgiwxw/yZY6Cca2NZB/fSnV/zQOGw="
+    crossorigin=""></script>
+</head>
+<h1>
+Leaflet Map
+</h1>
+<body>
+  <div id="map" style="width: 400px; height: 300px; margin: 0 auto;"></div>
+
+  <script>
+    // Function to get user location
+    function getLocation() {
+      if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(showPosition, showError);
+      } else {
+        alert("Geolocation is not supported by this browser.");
+      }
+    }
+
+    // Function to show user location on map
+    function showPosition(position) {
+      let latitude = position.coords.latitude;
+      let longitude = position.coords.longitude;
+
+      // Initialize the map centered on user location
+      var map = L.map('map').setView([latitude, longitude], 13);
+
+      // Add a tile layer
+      L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+      }).addTo(map);
+
+      // Add a marker with custom icon (flag) at user location
+      const icon = L.icon({
+        iconUrl: 'https://cdn-icons-png.flaticon.com/512/1498/2c/5e858e4d24e89c08c68e829588e2799c.png',
+        iconSize: [30, 30], // Size of the flag icon
+      });
+      L.marker([latitude, longitude], {icon: icon}).addTo(map)
+        .bindPopup('You are here!')
+        .openPopup();
+    }
+
+    // Function to handle location errors
+    function showError(error) {
+      switch (error.code) {
+        case error.PERMISSION_DENIED:
+          alert("User denied the request for Geolocation.");
+          break;
+        case error.POSITION_UNAVAILABLE:
+          alert("Location information is unavailable.");
+          break;
+        case error.TIMEOUT:
+          alert("The request to get user location timed out.");
+          break;
+        case error.UNKNOWN_ERROR:
+          alert("An unknown error occurred.");
+          break;
+      }
+    }
+
+    // Call getLocation function to get user location
+    getLocation();
+  </script>
+</body>
+</html>
