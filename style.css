@@ -60,7 +60,7 @@ img {
   border-radius: 10px; /* Set the rounded corner radius */
   padding: 10px 20px; /* Add some padding for better visual separation */
   text-decoration: none; /* Remove underline decoration */
-  color: #000; /* Set the text color to black */
+  color: #3c3c3c; /* Set the text color to black */
 }
 
 .rounded-link:hover {
@@ -70,9 +70,9 @@ img {
 .button {
       display: inline-block;
       padding: 10px 20px;
-      border: 2px solid #ccc; /* Light grey border */
+      border: 2px solid #966c3f; /* Brown border */
       border-radius: 5px; /* Rounded corners */
       text-decoration: none;
-      color: #333; /* Dark grey text */
+      color: #3c3c3c; /* Dark grey text */
       margin-top: 20px; 
     }
