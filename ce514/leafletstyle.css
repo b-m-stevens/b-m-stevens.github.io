@@ -5,9 +5,9 @@ body {
 }
 
 aside {
-  background-color: #DCDCDC; /* Set background color for the side panel */
-  padding: 2%; /* Add some padding for better readability */
-}
+      background-color: rgba(245, 245, 220, 0.8); /* Tan with 80% opacity */ 
+      padding: 20px;
+    }
 
 section {
   flex: 1; /* Allow the main content to take up the remaining space */
