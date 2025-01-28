@@ -10,6 +10,7 @@ aside {
   background-color: rgba(245, 245, 220, 0.8); /* Tan with 80% opacity */
   padding: 15px;
   margin-bottom: 20px; /* Add margin for spacing */
+  text-align: center;
 }
 
 section {
