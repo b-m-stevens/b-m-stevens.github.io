@@ -1,17 +1,24 @@
 body {
   font-family: Verdana;
   display: flex; /* Use flexbox for layout */
-  background-color: #FFEBCD
+  flex-direction: column; /* Make the main axis vertical */
+  min-height: 100vh; /* Set minimum height to viewport height */
+  background-color: #FFEBCD; /* Background color */
 }
 
 aside {
-      background-color: rgba(245, 245, 220, 0.8); /* Tan with 80% opacity */ 
-      padding: 15px;
-    }
+  background-color: rgba(245, 245, 220, 0.8); /* Tan with 80% opacity */
+  padding: 15px;
+  margin-bottom: 20px; /* Add margin for spacing */
+}
 
 section {
   flex: 1; /* Allow the main content to take up the remaining space */
   padding: 20px; /* Add padding for better readability */
+}
+
+#map {
+  height: 400px; /* Maintain the map height */
 }
 
 h1, h2, h3 {
