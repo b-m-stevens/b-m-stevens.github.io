@@ -62,6 +62,48 @@
       var marker = L.marker(markers[i].location).addTo(map);
       marker.bindPopup(markers[i].popupContent);
     }
+    // 1. Red Circle around my house
+        var circle = L.circle([38.9444, -104.7877], {
+            color: 'red',
+            fillColor: '#f03',
+            fillOpacity: 0.5,
+            radius: 700 // in meters
+        }).addTo(map);
+        circle.bindPopup("Provo, Utah");
+
+        // 2. Blue Polyline between Provo and St. George
+        //var polyline = L.polyline([
+            //[40.2338, -111.6585], // Provo
+            //[37.0965, -113.5684]  // St. George
+        //], {
+            //color: 'blue'
+        //}).addTo(map);
+        //polyline.bindPopup("A Road between Provo and St. George");
+
+        // 3. Polygon representing my house shape
+        var houseCoords = [
+            [38.94465, -104.7878361],
+            [38.94456667, -104.7875556],
+            [38.944575, -104.7875361],
+            [38.94477222, -104.7872167],
+            [38.94473056, -104.7871722],
+            [38.94450278, -104.7874],
+            [38.94437778, -104.7874806],
+            [38.94440833, -104.7878389]
+        ];
+        var polygon = L.polygon(houseCoords, {
+            color: 'green',
+            fillColor: '#0f0',
+            fillOpacity: 0.3
+        }).addTo(map);
+        polygon.bindPopup("My House");
+// Function to create a triangle marker
+        function createTriangleIcon() {
+            return L.divIcon({
+                className: 'triangle',
+                iconSize: [16, 16]
+            });
+        }
   </script>
 
 </body>
