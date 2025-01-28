@@ -105,6 +105,72 @@
             });
         }
   </script>
+  
+  <body>
+
+    <div id="map"></div>
+
+    <br>
+    <label for="lat1">Start Latitude:</label>
+    <input type="number" id="lat1" placeholder="Enter start latitude">
+    <br><br>
+    <label for="lng1">Start Longitude:</label>
+    <input type="number" id="lng1" placeholder="Enter start longitude">
+    <br><br>
+    <label for="lat2">End Latitude:</label>
+    <input type="number" id="lat2" placeholder="Enter end latitude">
+    <br><br>
+    <label for="lng2">End Longitude:</label>
+    <input type="number" id="lng2" placeholder="Enter end longitude">
+    <br><br>
+    <button onclick="calculateDistance()">Calculate Distance</button>
+    <br><br>
+    <div id="distance"></div>
+
+    <script>
+  function createCityIcon()> {
+                  return L.divIcon({
+                    className: 'city-icon',
+                    iconSize: [32, 32]
+                  });
+                }
+  //Haversine Distance Formula
+  a = sin²(Δφ/2) + cos(φ1) * cos(φ2) * sin²(Δλ/2)
+  c = 2 * atan2(√a, √(1-a))
+  d = R * c
+  function compute_distance(lat1, lng1, lat2, lng2) {
+                    const R = 6371; // Earth's radius in km
+                    const radLat1 = lat1 * Math.PI / 180;
+                    const radLng1 = lng1 * Math.PI / 180;
+                    const radLat2 = lat2 * Math.PI / 180;
+                    const radLng2 = lng2 * Math.PI / 180;
+                    const dLat = radLat2 - radLat1;
+                    const dLon = radLng2 - radLng1;
+                    const a = Math.sin(dLat / 2) ** 2 + Math.cos(radLat1) * Math.cos(radLat2) * Math.sin(dLon / 2) ** 2;
+                    const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+                    const distance = R * c;
+                    document.getElementById("results").innerHTML = "Distance = " + distance + " km";
+                  }
+  // Calculate intermediate points
+                  const A = Math.sin((1 - f) * angular_distance) / Math.sin(angular_distance);
+                  const B = Math.sin(f * angular_distance) / Math.sin(angular_distance);
+                  const x = A * Math.cos(radLat1) * Math.cos(radLng1) + B * Math.cos(radLat2) * Math.cos(radLng2);
+                  const y = A * Math.cos(radLat1) * Math.sin(radLng1) + B * Math.cos(radLat2) * Math.sin(radLng2);
+                  const z = A * Math.sin(radLat1) + B * Math.sin(radLat2);
+                  const newLat = Math.atan2(z, Math.sqrt(x ** 2 + y ** 2));
+                  const newLng = Math.atan2(y, x);
+  function great_circle(lat1, lng1, lat2, lng2) {
+                  // ... (calculate angular_distance, num_segments) ...
+                  const points = [];
+                  for (let i = 0; i <= num_segments; i++) {
+                    const f = i / num_segments;
+                    // ... (calculate intermediate latitude and longitude) ...
+                    points.push([new_lat * 180 / Math.PI, new_lng * 180 / Math.PI]);
+                  }
+                  const polyline = L.polyline(points, { color: 'red' }).addTo(map);
+                }
+  </script>
+
 
 </body>
 </html>
