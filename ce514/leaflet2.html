@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html>
 <head>
-<link rel="stylesheet" href="https://b-m-stevens.github.io/ce514/leafletstlye.css"> <title>Leaflet Map</title>
+<link rel="stylesheet" href="https://b-m-stevens.github.io/ce514/leafletstlye.css">
+  <title>Leaflet Map</title>
 </head>
 <body>
 
@@ -53,7 +54,7 @@
 
     // Add a tile layer
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+        attribution: 'copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
     }).addTo(map);
 
     // Add markers with popups to the map
@@ -167,7 +168,19 @@
                     points.push([new_lat * 180 / Math.PI, new_lng * 180 / Math.PI]);
                   }
                   const polyline = L.polyline(points, { color: 'red' }).addTo(map);
+                  return polyline;
                 }
+  document.getElementById("compute_distance").addEventListener("click", function() {
+    const lat1 = parseFloat(document.getElementById("lat1").value);
+    const lng1 = parseFloat(document.getElementById("lng1").value);
+    const lat2 = parseFloat(document.getElementById("lat2").value);
+    const lng2 = parseFloat(document.getElementById("lng2").value);
+
+    const distance = compute_distance(lat1, lng1, lat2, lng2);
+    document.getElementById("distance").innerHTML = "Distance = " + distance + " km";
+
+    const polyline = great_circle(lat1, lng1, lat2, lng2);
+});
   </script>
 
 
