@@ -49,7 +49,7 @@
   </code>
   </div>
     
-    <p>Then I used ArcGIS Pro to create points using known latitude and longitudes for all existing Walmarts within Utah County. I exported the points as a kml using "Layer to kml" tool. Then I imported both kmls into the leaflet map. </p>
+    <p>Then I used ArcGIS Pro to create points using known latitude and longitudes for all existing Walmarts within Utah County. I exported the points as a kml using "Layer to kml" tool. Then I imported both kmls into the leaflet map. The code for the Walmart locations is shown below:</p>
     
  <div style="overflow:auto;
   max-height:80px;
@@ -57,13 +57,27 @@
   margin:0 auto;
   border:2px solid#cccc;">
   <code>
+<?xml version="1.0" encoding="UTF-8"?>
+<kml xmlns="http://www.opengis.net/kml/2.2" xmlns:gx="http://www.google.com/kml/ext/2.2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+ xsi:schemaLocation="http://www.opengis.net/kml/2.2 http://schemas.opengis.net/kml/2.2.0/ogckml22.xsd http://www.google.com/kml/ext/2.2 http://code.google.com/apis/kml/schema/kml22gx.xsd">
+<Document id="Utah County Existing Walmarts">
+  <name>Utah County Existing Walmarts</name>
+  <snippet></snippet>
+  <Folder id="FeatureLayer0">
+    <name>Utah County Existing Walmarts</name>
+    <snippet></snippet>
+    <Placemark id="ID_00000">
+      <name>UTAH</name>
+      <snippet></snippet>
+    </Placemark>
+  </Folder>
+</Document>
+</kml>  
+</code>
+</div>
 
-  </code>
-  </div>
 
-
-
-  </section>
+</section>
 
 
 
