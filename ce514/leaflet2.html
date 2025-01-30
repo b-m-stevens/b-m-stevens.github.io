@@ -1,227 +1,478 @@
-<!DOCTYPE html>
 <html>
+
 <head>
+
 <link rel="stylesheet" href="https://b-m-stevens.github.io/ce514/leafletstyle.css">
-  <title>Leaflet Map</title>
+
+  <title>Leaflet Map</title>
+
 </head>
+
 <body>
 
-  <aside>
-    <h1>Interactive Leaflet Map</h1>
-    <p>A5 Leaflet Map</p>
-    <p>CE 514</p>
-    <p>28 January 2025</p>
-  </aside>
 
-  <section>
-    <h1></h1>
-    <p></p>
 
-    <div id="map" style="height: 400px;"></div> 
+  <aside>
 
-  </section>
+    <h1>Interactive Leaflet Map</h1>
 
-  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <p>A5 Leaflet Map</p>
 
-  <script>
-    // Define some example markers with popups
-    var markers = [
-      {
-        location: [38.9444, -104.7877], // Coordinates for 2111 Peacemaker 
-        popupContent: "<h3>My House, In the middle of the street</h3><p>Latitude: 38.9444, Longitude: -104.7877</p>"
-      },
-      {
-        location: [38.9498, -104.7725], // Coordinates for Rampart High School
-        popupContent: "<h3>Rampart High School</h3><p>Latitude: 38.9498, Longitude: -104.7725</p>"
-      },
-      {
-        location: [38.9578, -104.7709], // Coordinates for Lexington Building
-        popupContent: "<h3>Church of Jesus Christ of Latter-Day Saints, Vistors Welcome</h3><p>Latitude: 38.9578, Longitude: -104.7709</p>"
-      },
-      {
-        location: [38.8784, -104.8803], // Coordinates for Garden of the Gods
-        popupContent: "<h3>Garden of the Gods</h3><p>Latitude: 38.8784, Longitude: -104.8803</p>"
-      },
-      {
-        location: [38.9654, -104.7615], // Coordinates for John Venezia Park
-        popupContent: "<h3>John Venezia Park</h3><p>Latitude: 38.9654, Longitude: -104.7615</p>"
-      },
-    ];
+    <p>CE 514</p>
 
-    // Initialize the map
-    var map = L.map('map').setView([38.9514, -104.773678], 13); // Centered on northern Colorado Springs, CO, USA
+    <p>28 January 2025</p>
 
-    // Add a tile layer
-    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-    }).addTo(map);
+  </aside>
 
-    // Add markers with popups to the map
-    for (var i = 0; i < markers.length; i++) {
-      var marker = L.marker(markers[i].location).addTo(map);
-      marker.bindPopup(markers[i].popupContent);
-    }
-    // 1. Red Circle around my house
-        var circle = L.circle([38.9444, -104.7877], {
-            color: 'red',
-            fillColor: '#f03',
-            fillOpacity: 0.5,
-            radius: 700 // in meters
-        }).addTo(map);
-        circle.bindPopup("Provo, Utah");
 
-        // 2. Blue Polyline between Provo and St. George
-        //var polyline = L.polyline([
-            //[40.2338, -111.6585], // Provo
-            //[37.0965, -113.5684]  // St. George
-        //], {
-            //color: 'blue'
-        //}).addTo(map);
-        //polyline.bindPopup("A Road between Provo and St. George");
 
-        // 3. Polygon representing my house shape
-        var houseCoords = [
-            [38.94465, -104.7878361],
-            [38.94456667, -104.7875556],
-            [38.944575, -104.7875361],
-            [38.94477222, -104.7872167],
-            [38.94473056, -104.7871722],
-            [38.94450278, -104.7874],
-            [38.94437778, -104.7874806],
-            [38.94440833, -104.7878389]
-        ];
-        var polygon = L.polygon(houseCoords, {
-            color: 'green',
-            fillColor: '#0f0',
-            fillOpacity: 0.3
-        }).addTo(map);
-        polygon.bindPopup("My House");
+  <section>
+
+    <h1></h1>
+
+    <p></p>
+
+
+
+    <div id="map" style="height: 400px;"></div> 
+
+
+
+  </section>
+
+
+
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+
+
+
+  <script>
+
+    // Define some example markers with popups
+
+    var markers = [
+
+      {
+
+        location: [38.9444, -104.7877], // Coordinates for 2111 Peacemaker 
+
+        popupContent: "<h3>My House, In the middle of the street</h3><p>Latitude: 38.9444, Longitude: -104.7877</p>"
+
+      },
+
+      {
+
+        location: [38.9498, -104.7725], // Coordinates for Rampart High School
+
+        popupContent: "<h3>Rampart High School</h3><p>Latitude: 38.9498, Longitude: -104.7725</p>"
+
+      },
+
+      {
+
+        location: [38.9578, -104.7709], // Coordinates for Lexington Building
+
+        popupContent: "<h3>Church of Jesus Christ of Latter-Day Saints, Vistors Welcome</h3><p>Latitude: 38.9578, Longitude: -104.7709</p>"
+
+      },
+
+      {
+
+        location: [38.8784, -104.8803], // Coordinates for Garden of the Gods
+
+        popupContent: "<h3>Garden of the Gods</h3><p>Latitude: 38.8784, Longitude: -104.8803</p>"
+
+      },
+
+      {
+
+        location: [38.9654, -104.7615], // Coordinates for John Venezia Park
+
+        popupContent: "<h3>John Venezia Park</h3><p>Latitude: 38.9654, Longitude: -104.7615</p>"
+
+      },
+
+    ];
+
+
+
+    // Initialize the map
+
+    var map = L.map('map').setView([38.9514, -104.773678], 13); // Centered on northern Colorado Springs, CO, USA
+
+
+
+    // Add a tile layer
+
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+
+        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+
+    }).addTo(map);
+
+
+
+    // Add markers with popups to the map
+
+    for (var i = 0; i < markers.length; i++) {
+
+      var marker = L.marker(markers[i].location).addTo(map);
+
+      marker.bindPopup(markers[i].popupContent);
+
+    }
+
+    // 1. Red Circle around my house
+
+        var circle = L.circle([38.9444, -104.7877], {
+
+            color: 'red',
+
+            fillColor: '#f03',
+
+            fillOpacity: 0.5,
+
+            radius: 700 // in meters
+
+        }).addTo(map);
+
+        circle.bindPopup("Provo, Utah");
+
+
+
+        // 2. Blue Polyline between Provo and St. George
+
+        //var polyline = L.polyline([
+
+            //[40.2338, -111.6585], // Provo
+
+            //[37.0965, -113.5684]  // St. George
+
+        //], {
+
+            //color: 'blue'
+
+        //}).addTo(map);
+
+        //polyline.bindPopup("A Road between Provo and St. George");
+
+
+
+        // 3. Polygon representing my house shape
+
+        var houseCoords = [
+
+            [38.94465, -104.7878361],
+
+            [38.94456667, -104.7875556],
+
+            [38.944575, -104.7875361],
+
+            [38.94477222, -104.7872167],
+
+            [38.94473056, -104.7871722],
+
+            [38.94450278, -104.7874],
+
+            [38.94437778, -104.7874806],
+
+            [38.94440833, -104.7878389]
+
+        ];
+
+        var polygon = L.polygon(houseCoords, {
+
+            color: 'green',
+
+            fillColor: '#0f0',
+
+            fillOpacity: 0.3
+
+        }).addTo(map);
+
+        polygon.bindPopup("My House");
+
 // Function to create a triangle marker
-        function createTriangleIcon() {
-            return L.divIcon({
-                className: 'triangle',
-                iconSize: [16, 16]
-            });
-        }
-  </script>
-  
-  <body>
 
-    <div id="map"></div>
+        function createTriangleIcon() {
 
-    <br>
-    <label for="lat1">Start Latitude:</label>
-    <input type="number" id="lat1" placeholder="Enter start latitude">
-    <br><br>
-    <label for="lng1">Start Longitude:</label>
-    <input type="number" id="lng1" placeholder="Enter start longitude">
-    <br><br>
-    <label for="lat2">End Latitude:</label>
-    <input type="number" id="lat2" placeholder="Enter end latitude">
-    <br><br>
-    <label for="lng2">End Longitude:</label>
-    <input type="number" id="lng2" placeholder="Enter end longitude">
-    <br><br>
-    <button onclick="compute_distance()">Calculate Distance</button>
-    <br><br>
-    <div id="distance"></div>
+            return L.divIcon({
 
-    <script>
-  function createCityIcon()> {
-                  return L.divIcon({
-                    className: 'city-icon',
-                    iconSize: [32, 32]
-                  });
-                }
-  //Haversine Distance Formula
-  a = sin²(Δφ/2) + cos(φ1) * cos(φ2) * sin²(Δλ/2)
-  c = 2 * atan2(√a, √(1-a))
-  d = R * c
-  function compute_distance(lat1, lng1, lat2, lng2) {
-                    const R = 6371; // Earth's radius in km
-                    const radLat1 = lat1 * Math.PI / 180;
-                    const radLng1 = lng1 * Math.PI / 180;
-                    const radLat2 = lat2 * Math.PI / 180;
-                    const radLng2 = lng2 * Math.PI / 180;
-                    const dLat = radLat2 - radLat1;
-                    const dLon = radLng2 - radLng1;
-                    const a = Math.sin(dLat / 2) ** 2 + Math.cos(radLat1) * Math.cos(radLat2) * Math.sin(dLon / 2) ** 2;
-                    const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
-                    const distance = R * c;
-                    document.getElementById("distance").innerHTML = "Distance = " + distance + " km";
-                  }
-  // Calculate intermediate points
-                  const A = Math.sin((1 - f) * angular_distance) / Math.sin(angular_distance);
-                  const B = Math.sin(f * angular_distance) / Math.sin(angular_distance);
-                  const x = A * Math.cos(radLat1) * Math.cos(radLng1) + B * Math.cos(radLat2) * Math.cos(radLng2);
-                  const y = A * Math.cos(radLat1) * Math.sin(radLng1) + B * Math.cos(radLat2) * Math.sin(radLng2);
-                  const z = A * Math.sin(radLat1) + B * Math.sin(radLat2);
-                  const newLat = Math.atan2(z, Math.sqrt(x ** 2 + y ** 2));
-                  const newLng = Math.atan2(y, x);
-  function great_circle(lat1, lng1, lat2, lng2) {
-  const R = 6371; // Earth's radius in kilometers
+                className: 'triangle',
 
-  // Convert degrees to radians
-  const radLat1 = lat1 * Math.PI / 180;
-  const radLng1 = lng1 * Math.PI / 180;
-  const radLat2 = lat2 * Math.PI / 180;
-  const radLng2 = lng2 * Math.PI / 180;
+                iconSize: [16, 16]
 
-  // Calculate the differences in latitude and longitude
-  const dLat = radLat2 - radLat1;
-  const dLon = radLng2 - radLng1;
+            });
 
-  // Calculate the angular distance
-  const a = Math.sin(dLat / 2) * Math.sin(dLat / 2) +
-           Math.cos(radLat1) * Math.cos(radLat2) *
-           Math.sin(dLon / 2) * Math.sin(dLon / 2);
-  const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
-  const angular_distance = c;
+        }
 
-  // Number of segments to divide the path
-  const num_segments = 100;
+  </script>
 
-  // Calculate intermediate points
-  const points = [];
-  points.push([lat1, lng1]); // Add the starting point
+  
 
-  for (let i = 1; i <= num_segments; i++) {
-    let f = i / num_segments;
+  <body>
 
-    // Calculate intermediate coordinates using spherical linear interpolation
-    const A = Math.sin((1 - f) * angular_distance) / Math.sin(angular_distance);
-    const B = Math.sin(f * angular_distance) / Math.sin(angular_distance);
 
-    const x = A * Math.cos(radLat1) * Math.cos(radLng1) + B * Math.cos(radLat2) * Math.cos(radLng2);
-    const y = A * Math.cos(radLat1) * Math.sin(radLng1) + B * Math.cos(radLat2) * Math.sin(radLng2);
-    const z = A * Math.sin(radLat1) + B * Math.sin(radLat2);
 
-    const newLat = Math.atan2(z, Math.sqrt(x * x + y * y)) * 180 / Math.PI;
-    const newLng = Math.atan2(y, x) * 180 / Math.PI;
+    <div id="map"></div>
 
-    points.push([newLat, newLng]);
-  }
 
-  // Create and add the polyline to the map
-  const polyline = L.polyline(points, { color: 'red' }).addTo(map);
 
-  return polyline;
+    <br>
+
+    <label for="lat1">Start Latitude:</label>
+
+    <input type="number" id="lat1" placeholder="Enter start latitude">
+
+    <br><br>
+
+    <label for="lng1">Start Longitude:</label>
+
+    <input type="number" id="lng1" placeholder="Enter start longitude">
+
+    <br><br>
+
+    <label for="lat2">End Latitude:</label>
+
+    <input type="number" id="lat2" placeholder="Enter end latitude">
+
+    <br><br>
+
+    <label for="lng2">End Longitude:</label>
+
+    <input type="number" id="lng2" placeholder="Enter end longitude">
+
+    <br><br>
+
+    <button onclick="compute_distance()">Calculate Distance</button>
+
+    <br><br>
+
+    <div id="distance"></div>
+
+
+
+    <script>
+
+  function createCityIcon()> {
+
+                  return L.divIcon({
+
+                    className: 'city-icon',
+
+                    iconSize: [32, 32]
+
+                  });
+
+                }
+
+  //Haversine Distance Formula
+
+  a = sin²(Δφ/2) + cos(φ1) * cos(φ2) * sin²(Δλ/2)
+
+  c = 2 * atan2(√a, √(1-a))
+
+  d = R * c
+
+  function compute_distance(lat1, lng1, lat2, lng2) {
+
+                    const R = 6371; // Earth's radius in km
+
+                    const radLat1 = lat1 * Math.PI / 180;
+
+                    const radLng1 = lng1 * Math.PI / 180;
+
+                    const radLat2 = lat2 * Math.PI / 180;
+
+                    const radLng2 = lng2 * Math.PI / 180;
+
+                    const dLat = radLat2 - radLat1;
+
+                    const dLon = radLng2 - radLng1;
+
+                    const a = Math.sin(dLat / 2) ** 2 + Math.cos(radLat1) * Math.cos(radLat2) * Math.sin(dLon / 2) ** 2;
+
+                    const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+
+                    const distance = R * c;
+
+                    document.getElementById("distance").innerHTML = "Distance = " + distance + " km";
+
+                  }
+
+  // Calculate intermediate points
+
+                  const A = Math.sin((1 - f) * angular_distance) / Math.sin(angular_distance);
+
+                  const B = Math.sin(f * angular_distance) / Math.sin(angular_distance);
+
+                  const x = A * Math.cos(radLat1) * Math.cos(radLng1) + B * Math.cos(radLat2) * Math.cos(radLng2);
+
+                  const y = A * Math.cos(radLat1) * Math.sin(radLng1) + B * Math.cos(radLat2) * Math.sin(radLng2);
+
+                  const z = A * Math.sin(radLat1) + B * Math.sin(radLat2);
+
+                  const newLat = Math.atan2(z, Math.sqrt(x ** 2 + y ** 2));
+
+                  const newLng = Math.atan2(y, x);
+
+  function great_circle(lat1, lng1, lat2, lng2) {
+
+  const R = 6371; // Earth's radius in kilometers
+
+
+
+  // Convert degrees to radians
+
+  const radLat1 = lat1 * Math.PI / 180;
+
+  const radLng1 = lng1 * Math.PI / 180;
+
+  const radLat2 = lat2 * Math.PI / 180;
+
+  const radLng2 = lng2 * Math.PI / 180;
+
+
+
+  // Calculate the differences in latitude and longitude
+
+  const dLat = radLat2 - radLat1;
+
+  const dLon = radLng2 - radLng1;
+
+
+
+  // Calculate the angular distance
+
+  const a = Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+
+           Math.cos(radLat1) * Math.cos(radLat2) *
+
+           Math.sin(dLon / 2) * Math.sin(dLon / 2);
+
+  const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+
+  const angular_distance = c;
+
+
+
+  // Number of segments to divide the path
+
+  const num_segments = 100;
+
+
+
+  // Calculate intermediate points
+
+  const points = [];
+
+  points.push([lat1, lng1]); // Add the starting point
+
+
+
+  for (let i = 1; i <= num_segments; i++) {
+
+    let f = i / num_segments;
+
+
+
+    // Calculate intermediate coordinates using spherical linear interpolation
+
+    const A = Math.sin((1 - f) * angular_distance) / Math.sin(angular_distance);
+
+    const B = Math.sin(f * angular_distance) / Math.sin(angular_distance);
+
+
+
+    const x = A * Math.cos(radLat1) * Math.cos(radLng1) + B * Math.cos(radLat2) * Math.cos(radLng2);
+
+    const y = A * Math.cos(radLat1) * Math.sin(radLng1) + B * Math.cos(radLat2) * Math.sin(radLng2);
+
+    const z = A * Math.sin(radLat1) + B * Math.sin(radLat2);
+
+
+
+    const newLat = Math.atan2(z, Math.sqrt(x * x + y * y)) * 180 / Math.PI;
+
+    const newLng = Math.atan2(y, x) * 180 / Math.PI;
+
+
+
+    points.push([newLat, newLng]);
+
+  }
+
+
+
+  // Create and add the polyline to the map
+
+  const polyline = L.polyline(points, { color: 'red' }).addTo(map);
+
+
+
+  return polyline;
+
 }
+
 //Calculate distance and polyline on Button Click
-  document.getElementById("compute_distance").addEventListener("click", function() {
-    const lat1 = parseFloat(document.getElementById("lat1").value);
-    const lng1 = parseFloat(document.getElementById("lng1").value);
-    const lat2 = parseFloat(document.getElementById("lat2").value);
-    const lng2 = parseFloat(document.getElementById("lng2").value);
 
-    const distance = compute_distance(lat1, lng1, lat2, lng2);
-    document.getElementById("distance").innerHTML = "Distance = " + distance + " km";
+  document.getElementById("compute_distance").addEventListener("click", function() {
 
-    const polyline = great_circle(lat1, lng1, lat2, lng2);
+    const lat1 = parseFloat(document.getElementById("lat1").value);
+
+    const lng1 = parseFloat(document.getElementById("lng1").value);
+
+    const lat2 = parseFloat(document.getElementById("lat2").value);
+
+    const lng2 = parseFloat(document.getElementById("lng2").value);
+
+
+
+    const distance = compute_distance(lat1, lng1, lat2, lng2);
+
+    document.getElementById("distance").innerHTML = "Distance = " + distance + " km";
+
+
+
+    const polyline = great_circle(lat1, lng1, lat2, lng2);
+
 });
-  </script>
+
+console.log("KML URL:", 'https://b-m-stevens.github.io/ce514/UtahCountyTest.kml');
+
+console.log("Parsed KML:", kml);
+
+fetch('https://b-m-stevens.github.io/ce514/UtahCountyTest.kml') // Replace with the actual URL of your KML file
+
+    .then(res => res.text())
+
+    .then(kmltext => {
+
+      const parser = new DOMParser();
+
+      const kml = parser.parseFromString(kmltext, 'text/xml');
+
+      const kmlLayer = new L.KML(kml);
+
+      map.addLayer(kmlLayer);
 
 
+
+      // Optional: Fit the map to the KML bounds
+
+      kmlLayer.on('loaded', function() {
+
+        map.fitBounds(kmlLayer.getBounds());
+
+      });
+    });
+
+    .catch(error => console.error("Error loading KML:", error)); // Add error handling!
+
+  </script>
+
+</body>
 </body>
 </html>
