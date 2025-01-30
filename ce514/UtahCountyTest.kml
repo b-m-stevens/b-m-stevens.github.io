@@ -1,0 +1,140 @@
+<html xmlns:fo="http://www.w3.org/1999/XSL/Format" xmlns:msxsl="urn:schemas-microsoft-com:xslt">
+
+<head>
+
+<META http-equiv="Content-Type" content="text/html">
+
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+
+</head>
+
+<body style="margin:0px 0px 0px 0px;overflow:auto;background:#FFFFFF;">
+
+<table style="font-family:Arial,Verdana,Times;font-size:12px;text-align:left;width:100%;border-collapse:collapse;padding:3px 3px 3px 3px">
+
+<tr style="text-align:center;font-weight:bold;background:#9CBCE2">
+
+<td>UTAH</td>
+
+</tr>
+
+<tr>
+
+<td>
+
+<table style="font-family:Arial,Verdana,Times;font-size:12px;text-align:left;width:100%;border-spacing:0px; padding:3px 3px 3px 3px">
+
+<tr>
+
+<td>FID</td>
+
+<td>0</td>
+
+</tr>
+
+<tr bgcolor="#D4E4F3">
+
+<td>COUNTYNBR</td>
+
+<td>25</td>
+
+</tr>
+
+<tr>
+
+<td>ENTITYNBR</td>
+
+<td>2010251010</td>
+
+</tr>
+
+<tr bgcolor="#D4E4F3">
+
+<td>ENTITYYR</td>
+
+<td>2010</td>
+
+</tr>
+
+<tr>
+
+<td>NAME</td>
+
+<td>UTAH</td>
+
+</tr>
+
+<tr bgcolor="#D4E4F3">
+
+<td>FIPS</td>
+
+<td>49</td>
+
+</tr>
+
+<tr>
+
+<td>STATEPLANE</td>
+
+<td>Central</td>
+
+</tr>
+
+<tr bgcolor="#D4E4F3">
+
+<td>POP_LASTCE</td>
+
+<td>659399</td>
+
+</tr>
+
+<tr>
+
+<td>POP_CURRES</td>
+
+<td>702434</td>
+
+</tr>
+
+<tr bgcolor="#D4E4F3">
+
+<td>GlobalID</td>
+
+<td>8df99710-dcb1-4c52-8ead-e9555c83618f</td>
+
+</tr>
+
+<tr>
+
+<td>FIPS_STR</td>
+
+<td>49049</td>
+
+</tr>
+
+<tr bgcolor="#D4E4F3">
+
+<td>COLOR4</td>
+
+<td>3</td>
+
+</tr>
+
+</table>
+
+</td>
+
+</tr>
+
+</table>
+
+</body><script type="text/javascript">
+
+				function changeImage(attElement, nameElement) {
+
+				document.getElementById('imageAttachment').src = attElement;
+
+				document.getElementById('imageName').innerHTML = nameElement;}
+
+			</script></html>
+
