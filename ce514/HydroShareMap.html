@@ -15,142 +15,23 @@
     <p>CE 514</p>
     <p>28 January 2025</p>
 </aside>
+<body>
+    <h1>Simple WMS Demo</h1>
+    <div id="map" style="width: 100%; height: 600px;"></div>
+    <script>
+        var map = L.map('map').setView([55, -2], 4.5); // Centered on the US
 
-<div id="map"></div>
-<br>
-<label for="lat1">Start Latitude:</label>
-<input type="number" id="lat1" placeholder="Enter start latitude">
-<br><br>
-<label for="lng1">Start Longitude:</label>
-<input type="number" id="lng1" placeholder="Enter start longitude">
-<br><br>
-<label for="lat2">End Latitude:</label>
-<input type="number" id="lat2" placeholder="Enter end latitude">
-<br><br>
-<label for="lng2">End Longitude:</label>
-<input type="number" id="lng2" placeholder="Enter end longitude">
-<br><br>
-<button id="compute_distance">Calculate Distance</button>
-<br><br>
-<div id="distance"></div>
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            maxZoom: 19,
+            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+        }).addTo(map);
 
-<script>
-
-// Initialize the map
-
-var map = L.map('map').setView([38.9514, -104.773678], 13); // Centered on northern Colorado Springs, CO, USA
-
-// Add a tile layer
-
-    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-
-        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-
-    }).addTo(map);
-
-
-
-    // Add markers with popups to the map
-
-    for (var i = 0; i < markers.length; i++) {
-
-      var marker = L.marker(markers[i].location).addTo(map);
-
-      marker.bindPopup(markers[i].popupContent);
-
-    }
-function createCityIcon() {
-  return L.divIcon({
-    className: 'city-icon',
-    iconSize: [32, 32]
-  });
-}
-
-/**
- * Computes the Haversine distance between two points on Earth.
- * @param {number} lat1 Latitude of the first point.
- * @param {number} lng1 Longitude of the first point.
- * @param {number} lat2 Latitude of the second point.
- * @param {number} lng2 Longitude of the second point.
- * @returns {number} The distance between the two points in kilometers.
- */
-function computeDistance(lat1, lng1, lat2, lng2) {
-  const R = 6371; // Earth's radius in km
-
-  const radLat1 = lat1 * Math.PI / 180;
-  const radLng1 = lng1 * Math.PI / 180;
-  const radLat2 = lat2 * Math.PI / 180;
-  const radLng2 = lng2 * Math.PI / 180;
-
-  const dLat = radLat2 - radLat1;
-  const dLon = radLng2 - radLng1;
-
-  const a = Math.sin(dLat / 2)**2 + Math.cos(radLat1) * Math.cos(radLat2) * Math.sin(dLon / 2)**2;
-  const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
-  const distance = R * c;
-
-  return distance; // Return the distance instead of setting innerHTML directly
-}
-
-/**
- * Calculates intermediate points along a great circle path.
- * @param {number} lat1 Latitude of the starting point.
- * @param {number} lng1 Longitude of the starting point.
- * @param {number} lat2 Latitude of the ending point.
- * @param {number} lng2 Longitude of the ending point.
- * @param {number} [numSegments=100] The number of segments to divide the path into.
- * @returns {L.Polyline} A Leaflet polyline representing the great circle path.
- */
-function createGreatCircle(map, lat1, lng1, lat2, lng2, numSegments = 100) {
-  const R = 6371; // Earth's radius in kilometers
-
-  const radLat1 = lat1 * Math.PI / 180;
-  const radLng1 = lng1 * Math.PI / 180;
-  const radLat2 = lat2 * Math.PI / 180;
-  const radLng2 = lng2 * Math.PI / 180;
-
-  const dLat = radLat2 - radLat1;
-  const dLon = radLng2 - radLng1;
-
-  const angularDistance = 2 * Math.asin(Math.sqrt(Math.sin(dLat / 2)**2 + Math.cos(radLat1) * Math.cos(radLat2) * Math.sin(dLon / 2)**2)); //Simplified angular distance calculation
-
-  const points = [[lat1, lng1]]; // Start with the initial point
-
-  for (let i = 1; i <= numSegments; i++) {
-    const f = i / numSegments;
-
-    const A = Math.sin((1 - f) * angularDistance) / Math.sin(angularDistance);
-    const B = Math.sin(f * angularDistance) / Math.sin(angularDistance);
-
-    const x = A * Math.cos(radLat1) * Math.cos(radLng1) + B * Math.cos(radLat2) * Math.cos(radLng2);
-    const y = A * Math.cos(radLat1) * Math.sin(radLng1) + B * Math.cos(radLat2) * Math.sin(radLng2);
-    const z = A * Math.sin(radLat1) + B * Math.sin(radLat2);
-
-    const newLat = Math.atan2(z, Math.sqrt(x**2 + y**2)) * 180 / Math.PI;
-    const newLng = Math.atan2(y, x) * 180 / Math.PI;
-
-    points.push([newLat, newLng]);
-  }
-
-  const polyline = L.polyline(points, { color: 'red' }).addTo(map); // Make sure 'map' is defined
-		map.fitBounds(polyline.getBounds());
-  return polyline;
-}
-
-document.getElementById("compute_distance").addEventListener("click", function() {
-  const lat1 = parseFloat(document.getElementById("lat1").value);
-  const lng1 = parseFloat(document.getElementById("lng1").value);
-  const lat2 = parseFloat(document.getElementById("lat2").value);
-  const lng2 = parseFloat(document.getElementById("lng2").value);
-
-  const distance = computeDistance(lat1, lng1, lat2, lng2);
-  const polyline = createGreatCircle(map, lat1, lng1, lat2, lng2);
-        map.removeLayer(polyline);
-  document.getElementById("distance").innerHTML = "Distance = " + distance.toFixed(2) + " km"; //Format distance to 2 decimal places.
-
-  createGreatCircle(map, lat1, lng1, lat2, lng2); // Pass the map object!
-    });
-</script>
-
+        L.tileLayer.wms('https://geoserver.hydroshare.org/geoserver/HS-bf3d9967154b4cc880f792810ea6a286/wms', {
+            layers: 'HS-bf3d9967154b4cc880f792810ea6a286:Places_Lived',
+            format: 'image/png',
+            transparent: true,
+            attribution: 'Hydroshare GeoServer'
+        }).addTo(map);
+    </script>
 </body>
 </html>
