@@ -246,7 +246,7 @@ function createGreatCircle(map, lat1, lng1, lat2, lng2, numSegments = 100) {
   }
 
   const polyline = L.polyline(points, { color: 'red' }).addTo(map); // Make sure 'map' is defined
-
+		map.fitBounds(polyline.getBounds());
   return polyline;
 }
 
@@ -257,6 +257,8 @@ document.getElementById("compute_distance").addEventListener("click", function()
   const lng2 = parseFloat(document.getElementById("lng2").value);
 
   const distance = computeDistance(lat1, lng1, lat2, lng2);
+  const polyline = createGreatCircle(map, lat1, lng1, lat2, lng2);
+        map.removeLayer(polyline);
   document.getElementById("distance").innerHTML = "Distance = " + distance.toFixed(2) + " km"; //Format distance to 2 decimal places.
 
   createGreatCircle(map, lat1, lng1, lat2, lng2); // Pass the map object!
