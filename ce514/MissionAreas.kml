@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<kml xmlns="http://www.opengis.net/kml/2.2" xmlns:gx="http://www.google.com/kml/ext/2.2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+ xsi:schemaLocation="http://www.opengis.net/kml/2.2 http://schemas.opengis.net/kml/2.2.0/ogckml22.xsd http://www.google.com/kml/ext/2.2 http://code.google.com/apis/kml/schema/kml22gx.xsd">
+<Document id="Mission Areas">
+  <name>Mission Areas</name>
+  <snippet></snippet>
+  <Folder id="FeatureLayer0">
+    <name>Mission Areas</name>
+    <snippet></snippet>
+    <Placemark id="ID_00000">
+      <name>0</name>
+      <snippet></snippet>
+      <description><![CDATA[<html xmlns:fo="http://www.w3.org/1999/XSL/Format" xmlns:msxsl="urn:schemas-microsoft-com:xslt">
+
+<head>
+
+<META http-equiv="Content-Type" content="text/html">
+
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+
+</head>
+
+<body style="margin:0px 0px 0px 0px;overflow:auto;background:#FFFFFF;">
+
+<table style="font-family:Arial,Verdana,Times;font-size:12px;text-align:left;width:100%;border-collapse:collapse;padding:3px 3px 3px 3px">
+
+<tr style="text-align:center;font-weight:bold;background:#9CBCE2">
+
+<td>0</td>
+
+</tr>
+
+<tr>
+
+<td>
+
+<table style="font-family:Arial,Verdana,Times;font-size:12px;text-align:left;width:100%;border-spacing:0px; padding:3px 3px 3px 3px">
+
+<tr>
+
+<td>FID</td>
+
+<td>3</td>
+
+</tr>
+
+<tr bgcolor="#D4E4F3">
+
+<td>Id</td>
+
+<td>0</td>
+
+</tr>
+
+<tr>
+
+<td>Name</td>
+
+<td>Coleraine</td>
+
+</tr>
+
+</table>
+
+</td>
+
+</tr>
+
+</table>
+
+</body><script type="text/javascript">
+
+				function changeImage(attElement, nameElement) {
+
+				document.getElementById('imageAttachment').src = attElement;
+
+				document.getElementById('imageName').innerHTML = nameElement;}
+
+			</script></html>
+
+]]></description>
+      <styleUrl>#PolyStyle00</styleUrl>
+      <MultiGeometry>
+        <Polygon>
+          <extrude>0</extrude><altitudeMode>clampToGround</altitudeMode>
+          <outerBoundaryIs><LinearRing><coordinates> -6.960240279159789,55.18019194773963,0 -6.927820231765539,55.16127626034981,0 -6.93555661157644,55.1470708865173,0 -6.858909270856668,55.07051041647873,0 -6.765489488566904,55.03174675907562,0 -6.595740903968758,55.01988960833535,0 -6.465888651142422,55.04832210650545,0 -6.463845714136275,55.08896802929223,0 -6.487391669289456,55.19613337015146,0 -6.505818232152891,55.2350803695258,0 -6.51825622626595,55.23556303821515,0 -6.536432496031935,55.22120609333102,0 -6.567941413812876,55.21531024743457,0 -6.594240794252737,55.20724388501922,0 -6.629560474504785,55.20590564501548,0 -6.651354072651535,55.20884910118792,0 -6.656721889782469,55.21241820750828,0 -6.66548257264625,55.2097237569055,0 -6.655458570387782,55.20161526899041,0 -6.674947211810108,55.19898104346548,0 -6.696407541036916,55.1990983838753,0 -6.715836261337668,55.19598801573863,0 -6.720094665584556,55.19016120486901,0 -6.726966478954049,55.17857097428073,0 -6.735977417511799,55.17114332738684,0 -6.804074412686398,55.16847304287804,0 -6.889845416163562,55.16882988399049,0 -6.941387401866113,55.18562128859442,0 -6.963538973508174,55.19793179491486,0 -6.969167262024428,55.19675830766576,0 -6.962312070754977,55.18146642816455,0 -6.960240279159789,55.18019194773963,0</coordinates></LinearRing></outerBoundaryIs>
+        </Polygon>
+      </MultiGeometry>
+    </Placemark>
+  </Folder>
+  <Style id="PolyStyle00">
+    <LabelStyle>
+      <color>00000000</color>
+      <scale>0.000000</scale>
+    </LabelStyle>
+    <LineStyle>
+      <color>ff6e6e6e</color>
+      <width>0.700000</width>
+    </LineStyle>
+    <PolyStyle>
+      <color>ff603b8f</color>
+      <outline>1</outline>
+    </PolyStyle>
+  </Style>
+</Document>
+</kml>
