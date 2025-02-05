@@ -37,6 +37,36 @@
             transparent: true,
             attribution: 'Hydroshare GeoServer'
         }).addTo(map);
+        const demlayer = L.tileLayer.wms('https://geoserver.hydroshare.org/geoserver/HS-a51c74b3a8734324a53bb2c29ae9df3b/wms', {
+            layers: 'HS-a51c74b3a8734324a53bb2c29ae9df3b:Logan',
+            format: 'image/png',
+            transparent: true,
+            attribution: 'Hydroshare GeoServer'
+        });
+        demlayer.addTo(map);
+        
+        const netlayer = L.tileLayer.wms('https://geoserver.hydroshare.org/geoserver/HS-a51c74b3a8734324a53bb2c29ae9df3b/wms', {
+            layers: 'HS-a51c74b3a8734324a53bb2c29ae9df3b:Logannet',
+            format: 'image/png',
+            transparent: true,
+            attribution: 'Hydroshare GeoServer'
+        });
+        netlayer.addTo(map);
+        
+        const wlayer = L.tileLayer.wms('https://geoserver.hydroshare.org/geoserver/HS-a51c74b3a8734324a53bb2c29ae9df3b/wms', {
+            layers: 'HS-a51c74b3a8734324a53bb2c29ae9df3b:Loganw',
+            format: 'image/png',
+            transparent: true,
+            attribution: 'Hydroshare GeoServer'
+        });
+        wlayer.addTo(map);
+        
+        L.tileLayer.wms('https://geoserver.hydroshare.org/geoserver/HS-a51c74b3a8734324a53bb2c29ae9df3b/wms', {
+            layers: 'HS-a51c74b3a8734324a53bb2c29ae9df3b:Loganoutlet',
+            format: 'image/png',
+            transparent: true,
+            attribution: 'Hydroshare GeoServer'
+        }).addTo(map);
     </script>
 </body>
 </html>
