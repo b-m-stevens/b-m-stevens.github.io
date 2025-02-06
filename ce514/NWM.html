@@ -16,7 +16,8 @@
     <p>13 February 2025</p>
 </aside>
 <body>
-  <p>The National Water Model (NWM) is a hydrologic model developed by NOAA that provides forecasts of streamflow and other hydrologic variables across the United States. It's a powerful tool for water resources management, flood forecasting, and more. You can learn more about the NWM below. Given a known Reach ID for a certain river or stream, this website will produce a table and graph of the short-range stream flow values. Enter your reach ID in the box below to give it a try.</p>
+  <p>The National Water Model (NWM) is a hydrologic model developed by NOAA that provides forecasts of streamflow and other hydrologic variables across the United States. It's a powerful tool for water resources management, flood forecasting, and more. You can learn more about the NWM below.</p> 
+<p> Given a known Reach ID for a certain river or stream, this website will produce a table and graph of the short-range stream flow values. Enter your reach ID in the box below to give it a try.</p>
 
   <h2>Enter Reach ID:</h2>
   <input type="text" id="reachIdInput" placeholder="Enter a Reach ID (e.g., 12121104)">
@@ -50,5 +51,5 @@
     <p>The code first fetches the data from the API.  It then parses the JSON response and extracts the timestamps and flow values.  These values are then used to populate the table and create the chart. The chart is a line graph showing the streamflow over time.</p>
   </div>
 
-  <script src="script.js"></script> </body>
+  <script src="nwmscript.js"></script> </body>
 </html>
