@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>NWM Forecast Viewer</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <link rel="stylesheet" href="style.css">  </head>
+<body>
+
+  <h1>National Water Model (NWM) Forecasts</h1>
+
+  <p>The National Water Model (NWM) is a hydrologic model developed by NOAA that provides forecasts of streamflow and other hydrologic variables across the United States. It's a powerful tool for water resources management, flood forecasting, and more.</p>
+
+  <p>Learn more about the NWM:</p>
+  <ul>
+    <li><a href="https://water.noaa.gov/about/nwm">NOAA NWM Overview</a></li>
+    <li><a href="https://www.sciencedirect.com/science/article/pii/S1364815224001841">ScienceDirect Paper</a></li>
+    <li><a href="https://onlinelibrary.wiley.com/doi/full/10.1111/1752-1688.13184">Wiley Online Library Paper</a></li>
+  </ul>
+
+  <h2>Enter Reach ID:</h2>
+  <input type="text" id="reachIdInput" placeholder="Enter a Reach ID (e.g., 12121104)">
+  <button onclick="getForecast()">Get Forecast</button>
+
+  <div id="forecast-container">
+    <table id="timeseries-datatable">
+      <thead>
+        <tr>
+          <th>Timestamp</th>
+          <th>Flow value</th>
+        </tr>
+      </thead>
+      <tbody>
+      </tbody>
+    </table>
+    <canvas id="streamflowChart"></canvas>
+  </div>
+
+  <div id="how-it-works">
+    <h2>How It Works</h2>
+    <p>This web application retrieves NWM short-range forecasts using the NOAA NWPS API. The user enters a Reach ID, which is a unique identifier for a river segment. The application then makes a request to the NOAA API for the forecast data associated with that Reach ID. The retrieved data (time and streamflow values) is then displayed in a table and visualized in a chart using Chart.js.  If an error occurs during the API call or data processing, an alert message is displayed to inform the user.</p>
+    <p>The API endpoint used is: `https://api.water.noaa.gov/nwps/v1/reaches/{reachId}/streamflow?series=short_range`.  The `{reachId}` portion is replaced with the Reach ID entered by the user.</p>
+    <p>The code first fetches the data from the API.  It then parses the JSON response and extracts the timestamps and flow values.  These values are then used to populate the table and create the chart. The chart is a line graph showing the streamflow over time.</p>
+  </div>
+
+
+  <script src="script.js"></script> </body>
+</html>
