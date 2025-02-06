@@ -60,6 +60,11 @@
             attribution: 'Hydroshare GeoServer'
         }).addTo(map);
         
+        var locations = {
+            missionareas: { layer: missionareasLayer, lat: 55.00, lng: -2.00, zoom: 5 },
+            placeslived: { layer: placeslivedLayer, lat: 55.00, lng: -2.00, zoom: 5  },
+            scotlandrivers: { layer: scotlandriversLayer, lat: 55.00, lng: -2.00, zoom: 5 }
+        };
         document.getElementById('location-select').addEventListener('change', function() {
             var selectedLocation = this.value;
             if (selectedLocation && locations[selectedLocation]) {
