@@ -1,3 +1,4 @@
+
 <html>
 <head>
 <link rel="stylesheet" href="https://b-m-stevens.github.io/ce514/leafletstyle.css">
@@ -18,21 +19,21 @@
 <body>
     <div id="map" style="width: 100%; height: 600px;"></div>
     <script>
-        var map = L.map('map').setView([34, -110], 4.5); // Centered on the UK
+        var map = L.map('map').setView([55, -2], 4.5); // Centered on the UK
 
         L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
             maxZoom: 19,
             attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
         }).addTo(map);
-
         L.tileLayer.wms('https://geoserver.hydroshare.org/geoserver/HS-bf3d9967154b4cc880f792810ea6a286/wms', {
-            layers: 'HS-bf3d9967154b4cc880f792810ea6a286:Places_Lived',
+            layers: 'HS-bf3d9967154b4cc880f792810ea6a286:Mission_Areas',
             format: 'image/png',
             transparent: true,
             attribution: 'Hydroshare GeoServer'
         }).addTo(map);
+
         L.tileLayer.wms('https://geoserver.hydroshare.org/geoserver/HS-bf3d9967154b4cc880f792810ea6a286/wms', {
-            layers: 'HS-bf3d9967154b4cc880f792810ea6a286:Mission_Areas',
+            layers: 'HS-bf3d9967154b4cc880f792810ea6a286:Places_Lived',
             format: 'image/png',
             transparent: true,
             attribution: 'Hydroshare GeoServer'
