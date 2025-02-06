@@ -17,6 +17,21 @@
     <p>28 January 2025</p>
 </aside>
 <body>
+    <h1 style="text-align: center;">Scotland/Ireland Sister Travels</h1>
+    <div id="dropdown-container">
+        <label for="location-select">Select a location: </label>
+        <select id="location-select">
+            <option value="">--Select--</option>
+            <option value="missionareas">Mission Areas</option>
+            <option value="placeslived">Places Lived</option>
+            <option value="scotlandrivers">Rivers of Scotland</option>
+        </select>
+    </div>
+    <div class="layer-controls">
+        <button id="missionareas-toggle">Mission Areas</button>
+        <button id="placeslived-toggle">Places Lived</button>
+        <button id="scotlandrivers-toggle">Rivers of Scotland</button>
+    </div>
     <div id="map" style="width: 100%; height: 600px;"></div>
     <script>
         var map = L.map('map').setView([55, -2], 4.5); // Centered on the UK
@@ -25,25 +40,26 @@
             maxZoom: 19,
             attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
         }).addTo(map);
-        L.tileLayer.wms('https://geoserver.hydroshare.org/geoserver/HS-bf3d9967154b4cc880f792810ea6a286/wms', {
+        var scotlandrivers = L.tileLayer.wms('https://geoserver.hydroshare.org/geoserver/HS-bf3d9967154b4cc880f792810ea6a286/wms', {
+            layers: 'HS-bf3d9967154b4cc880f792810ea6a286:WatercourseLink',
+            format: 'image/png',
+            transparent: true,
+            attribution: 'Hydroshare GeoServer'
+        }).addTo(map);
+        var missionareas = L.tileLayer.wms('https://geoserver.hydroshare.org/geoserver/HS-bf3d9967154b4cc880f792810ea6a286/wms', {
             layers: 'HS-bf3d9967154b4cc880f792810ea6a286:Mission_Areas',
             format: 'image/png',
             transparent: true,
             attribution: 'Hydroshare GeoServer'
         }).addTo(map);
 
-        L.tileLayer.wms('https://geoserver.hydroshare.org/geoserver/HS-bf3d9967154b4cc880f792810ea6a286/wms', {
+        var placeslived = L.tileLayer.wms('https://geoserver.hydroshare.org/geoserver/HS-bf3d9967154b4cc880f792810ea6a286/wms', {
             layers: 'HS-bf3d9967154b4cc880f792810ea6a286:Places_Lived',
             format: 'image/png',
             transparent: true,
             attribution: 'Hydroshare GeoServer'
         }).addTo(map);
-        L.tileLayer.wms('https://geoserver.hydroshare.org/geoserver/HS-bf3d9967154b4cc880f792810ea6a286/wms', {
-            layers: 'HS-bf3d9967154b4cc880f792810ea6a286:WatercourseLink',
-            format: 'image/png',
-            transparent: true,
-            attribution: 'Hydroshare GeoServer'
-        }).addTo(map);
+        
         //Logan Rasters
         netlayer.addTo(map);
         L.tileLayer.wms('https://geoserver.hydroshare.org/geoserver/HS-a51c74b3a8734324a53bb2c29ae9df3b/wms', {
