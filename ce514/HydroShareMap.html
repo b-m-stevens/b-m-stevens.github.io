@@ -35,109 +35,100 @@
     <div id="map" style="width: 100%; height: 600px;"></div>
     <script>
         var map = L.map('map').setView([55, -2], 4.5); // Centered on the UK
-
         L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
             maxZoom: 19,
             attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
         }).addTo(map);
-        var scotlandrivers = L.tileLayer.wms('https://geoserver.hydroshare.org/geoserver/HS-bf3d9967154b4cc880f792810ea6a286/wms', {
+        
+        // Define layers but DON'T add them to the map initially
+        var scotlandriversLayer = L.tileLayer.wms('https://geoserver.hydroshare.org/geoserver/HS-bf3d9967154b4cc880f792810ea6a286/wms', {
             layers: 'HS-bf3d9967154b4cc880f792810ea6a286:WatercourseLink',
             format: 'image/png',
             transparent: true,
             attribution: 'Hydroshare GeoServer'
-        }).addTo(map);
-        var missionareas = L.tileLayer.wms('https://geoserver.hydroshare.org/geoserver/HS-bf3d9967154b4cc880f792810ea6a286/wms', {
+        });
+
+        var missionareasLayer = L.tileLayer.wms('https://geoserver.hydroshare.org/geoserver/HS-bf3d9967154b4cc880f792810ea6a286/wms', {
             layers: 'HS-bf3d9967154b4cc880f792810ea6a286:Mission_Areas',
             format: 'image/png',
             transparent: true,
             attribution: 'Hydroshare GeoServer'
-        }).addTo(map);
+        });
 
-        var placeslived = L.tileLayer.wms('https://geoserver.hydroshare.org/geoserver/HS-bf3d9967154b4cc880f792810ea6a286/wms', {
+        var placeslivedLayer = L.tileLayer.wms('https://geoserver.hydroshare.org/geoserver/HS-bf3d9967154b4cc880f792810ea6a286/wms', {
             layers: 'HS-bf3d9967154b4cc880f792810ea6a286:Places_Lived',
             format: 'image/png',
             transparent: true,
             attribution: 'Hydroshare GeoServer'
-        }).addTo(map);
-        
+        });
+
+        // Logan Rasters - Same principle: define but don't add
+        var netlayer = L.tileLayer.wms('https://geoserver.hydroshare.org/geoserver/HS-a51c74b3a8734324a53bb2c29ae9df3b/wms', {
+            layers: 'HS-a51c74b3a8734324a53bb2c29ae9df3b:Logannet',
+            format: 'image/png',
+            transparent: true,
+            attribution: 'Hydroshare GeoServer'
+        });
+
+        var wlayer = L.tileLayer.wms('https://geoserver.hydroshare.org/geoserver/HS-a51c74b3a8734324a53bb2c29ae9df3b/wms', {
+            layers: 'HS-a51c74b3a8734324a53bb2c29ae9df3b:Loganw',
+            format: 'image/png',
+            transparent: true,
+            attribution: 'Hydroshare GeoServer'
+        });
+
+        var demlayer = L.tileLayer.wms('https://geoserver.hydroshare.org/geoserver/HS-a51c74b3a8734324a53bb2c29ae9df3b/wms', {
+            layers: 'HS-a51c74b3a8734324a53bb2c29ae9df3b:Logan',
+            format: 'image/png',
+            transparent: true,
+            attribution: 'Hydroshare GeoServer'
+        });
+
         var locations = {
             missionareas: { layer: missionareasLayer, lat: 55.00, lng: -2.00, zoom: 5 },
-            placeslived: { layer: placeslivedLayer, lat: 55.00, lng: -2.00, zoom: 5  },
+            placeslived: { layer: placeslivedLayer, lat: 55.00, lng: -2.00, zoom: 5 },
             scotlandrivers: { layer: scotlandriversLayer, lat: 55.00, lng: -2.00, zoom: 5 }
         };
         document.getElementById('location-select').addEventListener('change', function() {
             var selectedLocation = this.value;
+            // Remove ALL WMS layers first
+            for (const location in locations) {
+                if (locations.hasOwnProperty(location)) {
+                    map.removeLayer(locations[location].layer);
+                }
+            }
+                map.removeLayer(netlayer);
+                map.removeLayer(wlayer);
+                map.removeLayer(demlayer);
+
+
             if (selectedLocation && locations[selectedLocation]) {
                 var loc = locations[selectedLocation];
                 map.setView([loc.lat, loc.lng], loc.zoom);
-                // Show only the selected layer and hide the others
-                for (const location in locations) {
-                    if (locations.hasOwnProperty(location)) {
-                        const otherLoc = locations[location];
-                        if (otherLoc.layer !== loc.layer) {
-                            map.removeLayer(otherLoc.layer);
-                        } else if (!map.hasLayer(loc.layer)) {  // Add layer if not already on the map
-                            loc.layer.addTo(map);
-                        }
-                    }
-                }
-
-            } else { // If no location is selected, you might want to remove all WMS layers.
-                for (const location in locations) {
-                    if (locations.hasOwnProperty(location)) {
-                        map.removeLayer(locations[location].layer);
-                    }
-                }
+                loc.layer.addTo(map); // Add the selected layer back
             }
         });
 
-        // Toggle button functionality
-        document.getElementById('missionareas-toggle').addEventListener('click', function() {
+                document.getElementById('missionareas-toggle').addEventListener('click', function() {
             toggleLayer(missionareasLayer);
         });
+
         document.getElementById('placeslived-toggle').addEventListener('click', function() {
             toggleLayer(placeslivedLayer);
         });
+
         document.getElementById('scotlandrivers-toggle').addEventListener('click', function() {
             toggleLayer(scotlandriversLayer);
         });
 
-        function toggleLayer(layer) {
+                function toggleLayer(layer) {
             if (map.hasLayer(layer)) {
                 map.removeLayer(layer);
             } else {
                 map.addLayer(layer);
             }
         }
-        
-        //Logan Rasters
-        netlayer.addTo(map);
-        L.tileLayer.wms('https://geoserver.hydroshare.org/geoserver/HS-a51c74b3a8734324a53bb2c29ae9df3b/wms', {
-            layers: 'HS-a51c74b3a8734324a53bb2c29ae9df3b:Loganoutlet',
-            format: 'image/png',
-            transparent: true,
-            attribution: 'Hydroshare GeoServer'
-        }).addTo(map);
-        const netlayer = L.tileLayer.wms('https://geoserver.hydroshare.org/geoserver/HS-a51c74b3a8734324a53bb2c29ae9df3b/wms', {
-            layers: 'HS-a51c74b3a8734324a53bb2c29ae9df3b:Logannet',
-            format: 'image/png',
-            transparent: true,
-            attribution: 'Hydroshare GeoServer'
-        });
-        const wlayer = L.tileLayer.wms('https://geoserver.hydroshare.org/geoserver/HS-a51c74b3a8734324a53bb2c29ae9df3b/wms', {
-            layers: 'HS-a51c74b3a8734324a53bb2c29ae9df3b:Loganw',
-            format: 'image/png',
-            transparent: true,
-            attribution: 'Hydroshare GeoServer'
-        });
-        wlayer.addTo(map);
-        const demlayer = L.tileLayer.wms('https://geoserver.hydroshare.org/geoserver/HS-a51c74b3a8734324a53bb2c29ae9df3b/wms', {
-            layers: 'HS-a51c74b3a8734324a53bb2c29ae9df3b:Logan',
-            format: 'image/png',
-            transparent: true,
-            attribution: 'Hydroshare GeoServer'
-        });
-        demlayer.addTo(map);
+
     </script>
 </body>
 </html>
