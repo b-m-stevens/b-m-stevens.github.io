@@ -34,8 +34,19 @@ async function getForecast() {
       const row = table.insertRow();
       const timestampCell = row.insertCell();
       const flowCell = row.insertCell();
-      timestampCell.textContent = timestamps[i];
+      
+      // Format timestamp (optional - customize as needed)
+      const formattedTimestamp = new Date(timestamps[i]).toLocaleString(); // Example formatting
+      timestampCell.textContent = formattedTimestamp;
       flowCell.textContent = flowValues[i];
+
+      //Add alternating row colors for readability
+      if (i % 2 === 0) {
+        row.classList.add('even-row'); // Add class for even rows
+      } else {
+        row.classList.add('odd-row');  // Add class for odd rows
+        }
+
     }
 
     // Update or create the chart
