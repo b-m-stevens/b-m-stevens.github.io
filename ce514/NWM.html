@@ -4,6 +4,22 @@
 <link rel="stylesheet" href="https://b-m-stevens.github.io/ce514/leafletstyle.css">
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <title>NWM Forecast Viewer</title>
+<style>
+  #timeseries-datatable {
+    border-collapse: collapse; /* Collapse borders to avoid double borders */
+    width: 50%; /* Or a specific width */
+  }
+
+  #timeseries-datatable th, #timeseries-datatable td {
+    border: 1px solid black; /* Add border to table cells */
+    padding: 8px; /* Add some padding for readability */
+    text-align: left; /* Align text to the left (or as needed) */
+  }
+
+  #timeseries-datatable th {
+    background-color: #f2f2f2; /* Optional: Add a background color to the header */
+  }
+</style>
 </head>
 <body>  
 <aside>
