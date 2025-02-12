@@ -37,8 +37,45 @@
   <p>Rush Creek ID=</p>
   <h2>Enter Reach ID:</h2>
   <input type="number" id="reachIdInput" placeholder="Enter a Reach ID (e.g., 12121104)">
-  <button onclick="getForecast()">Get Forecast</button>
+  <button onclick="getForecast()" style="background-color: blue; color: white; padding: 10px 20px; border: none; float: left; border-radius: 20px; text-decoration: none; font-size: 16px; width: 25%; display: inline-block; text-align: center;">Get Forecast</button>
+<br>
+<!-- Leaflet Map -->
+<div id="map"></div>
+<script>
 
+    // Define some example markers with popups
+    var markers = [
+      {location: [38.9444, -104.7877], // Coordinates for 2111 Peacemaker 
+        popupContent: "<h3>My House, In the middle of the street</h3><p>Latitude: 38.9444, Longitude: -104.7877</p>"
+      },
+      {location: [38.9498, -104.7725], // Coordinates for Rampart High School
+        popupContent: "<h3>Rampart High School</h3><p>Latitude: 38.9498, Longitude: -104.7725</p>"
+      },
+      {location: [38.9578, -104.7709], // Coordinates for Lexington Building
+        popupContent: "<h3>Church of Jesus Christ of Latter-Day Saints, Vistors Welcome</h3><p>Latitude: 38.9578, Longitude: -104.7709</p>"
+      },
+      {location: [38.8784, -104.8803], // Coordinates for Garden of the Gods
+        popupContent: "<h3>Garden of the Gods</h3><p>Latitude: 38.8784, Longitude: -104.8803</p>"
+      },
+      {location: [38.9654, -104.7615], // Coordinates for John Venezia Park
+        popupContent: "<h3>John Venezia Park</h3><p>Latitude: 38.9654, Longitude: -104.7615</p>"
+      },
+    ];
+// Initialize the map
+var map = L.map('map').setView([38.9514, -104.773678], 13); // Centered on northern Colorado Springs, CO, USA
+// Add a tile layer
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+    }).addTo(map);
+    // Add markers with popups to the map
+    for (var i = 0; i < markers.length; i++) {
+      var marker = L.marker(markers[i].location).addTo(map);
+      marker.bindPopup(markers[i].popupContent);
+    }
+  
+</script>
+
+<!-- Forecast Container: Table and Graph Flows -->
   <div id="forecast-container">
     <table id="timeseries-datatable">
       <thead>
@@ -52,7 +89,8 @@
     </table>
     <canvas id="streamflowChart"></canvas>
   </div>
-
 <script src="nwmscript.js"></script> </body>
+
+
 </body>
 </html>
