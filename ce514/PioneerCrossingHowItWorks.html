@@ -16,8 +16,24 @@
 </aside>
 <h1>NWM Pioneer Crossing Page</h1>
 <p>This page is intended to describe how the Pioneer Crossing page works. Pioneer Crossing is a model that draws data from the National Weather Service Flow Prediction Service to fomrulate future flow predictions for the rivers that run through [Green River, WY]. This page then interprets the flow data and tells the user (you!) if the stream flows are safe to cross on the date of your crossing. Check back regularly as flow predictions are subject to change. </p>
+<p>More information about the National Water Model can found at these links below:</p>
+  <ul>
+    <li><a href="https://water.noaa.gov/about/nwm">NOAA NWM Overview</a></li>
+    <li><a href="https://www.sciencedirect.com/science/article/pii/S1364815224001841">ScienceDirect Paper</a></li>
+    <li><a href="https://onlinelibrary.wiley.com/doi/full/10.1111/1752-1688.13184">Wiley Online Library Paper</a></li>
+  </ul>
 <p>For those who code, the code is detailed below.</p>
 
-<h1>How the Code Works</h1>
+<div id="how-it-works">
+    <h2>How The Code Works</h2>
+    <p>This web application retrieves National Water Model short-range forecasts using the <a href="https://water.noaa.gov/" target=_blank>NOAA NWPS API</a>.</p> 
+    <p>1)The user enters a Reach ID into the input box above, which is a unique identifier for a river segment.</p>
+    <p>2)The application then makes a request to the NOAA API for the forecast data associated with that Reach ID.</p>
+    <p>3)The retrieved data (time and streamflow values) is then displayed in a table and visualized in a chart using Chart.js.</p>  
+    <p>4)If an error occurs during the API call or data processing, an alert message is displayed to inform the user.</p>
+    <p>The API endpoint used is: `https://api.water.noaa.gov/nwps/v1/reaches/{reachId}/streamflow?series=short_range`.  The `{reachId}` portion is replaced with the Reach ID entered by the user.</p>
+    <p>The code first fetches the data from the API.  It then parses the JSON response and extracts the timestamps and flow values.  These values are then used to populate the table and create the chart. The chart is a line graph showing the streamflow over time.</p>
+  </div>
+    
 </body>
 </html>
