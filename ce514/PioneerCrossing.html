@@ -35,9 +35,7 @@
 </aside>
   <p>Sweetwater River (near Independence Rock) Reach ID = 15954494</p>
   <p>North Platte River Crossing (near Fort Laramie) Reach ID = 17483383</p>
-  <h2>Enter Reach ID:</h2>
-  <input type="number" id="reachIdInput" placeholder="Enter a Reach ID (e.g., 12121104)" style="width: 25%;">
-  <button onclick="getForecast()" style="background-color: blue; color: white; padding: 10px 20px; border: none; float: left; border-radius: 20px; text-decoration: none; font-size: 16px; width: 25%; display: inline-block; text-align: center;">Get Forecast</button>
+  <p>North Platte River Crossing (near Casper) Reach ID = 22107367</p>
 <br>
 <!-- Leaflet Map -->
 <div id="map"></div>
@@ -46,8 +44,8 @@
     // Define markers with popups
     var markers = [
       {location: [42.486453, -107.151951], popupContent: "<h3>Sweetwater Crossing near Independence Rock</h3>", reachId: 15954494},
-        {location: [42.210454, -104.533783], popupContent: "<h3>North Platte River Crossing</h3>", reachId: 17483383},
-        {location: [38.9578, -104.7709], popupContent: "<h3>Church of Jesus Christ of Latter-Day Saints, Vistors Welcome</h3>", reachId: null}, // Example with no reach ID
+        {location: [42.210454, -104.533783], popupContent: "<h3>North Platte River Crossing at Fort Laramie</h3>", reachId: 17483383},
+        {location: [42.838702, -106.370093], popupContent: "<h3>North Platte River Crossing at Casper</h3>", reachId: 22107367}, // Example with no reach ID
         {location: [38.8784, -104.8803], popupContent: "<h3>Garden of the Gods</h3>", reachId: null}, // Example with no reach ID
         {location: [38.9654, -104.7615], popupContent: "<h3>John Venezia Park</h3>", reachId: null}  // Example with no reach ID
     ];
