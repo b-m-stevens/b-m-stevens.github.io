@@ -28,8 +28,8 @@
         <img src="https://icons.iconarchive.com/icons/johanchalibert/mac-osx-yosemite/512/launchpad-icon.png" alt="launchpad" style="width:32px; height:32px;">
     </a>
       <h1>Pioneeer Trek River Crossing Check</h1>
-    <p>Use the map and reach IDs below to determine if your river crossing will be passable on the day of your scheduled cross.</p>
-    <p>Either click on the blue marker on the map for your area, or enter the numeric "reach ID" into the box for the river you're crossing. When you hit "Get Forecast," the information for the river crossing will show below.</p>
+    <p>Use the map below to determine if your river crossing will be passable on the day of your scheduled cross.</p>
+    <p>Click on the blue marker on the map for your area. The information for the river crossing will show below. Click the buttons for long-range or short-range to change the window of time to see predections. Predictions longer than 1 week are not included as predictions that far away are unreliable.</p>
     <a href="https://b-m-stevens.github.io/" style="background-color: blue; color: white; padding: 10px 20px; border: none; float: right; border-radius: 20px; text-decoration: none; font-size: 16px; width: 25%; display: inline-block; text-align: center;">About the Author</a>
     <a href="https://b-m-stevens.github.io/ce514/PioneerCrossingHowItWorks.html" style="background-color: blue; color: white; padding: 10px 20px; border: none; float: left; border-radius: 20px; text-decoration: none; font-size: 16px; width: 25%; display: inline-block; text-align: center;">How it works</a>
 </aside>
@@ -43,7 +43,9 @@
   <h2>Enter Reach ID:</h2> -->
   <input type="number" id="reachIdInput" style="width: 25%;">
   <button onclick="getForecast()" style="background-color: blue; color: white; padding: 10px 20px; border: none; float: left; border-radius: 20px; text-decoration: none; font-size: 16px; width: 25%; display: inline-block; text-align: center;">Get Forecast</button>
-<br>
+  <a href="https://b-m-stevens.github.io/" style="background-color: blue; color: white; padding: 10px 20px; border: none; float: right; border-radius: 20px; text-decoration: none; font-size: 16px; width: 25%; display: inline-block; text-align: center;">Long-Range Prediction</a>
+  <a href="https://b-m-stevens.github.io/" style="background-color: blue; color: white; padding: 10px 20px; border: none; float: right; border-radius: 20px; text-decoration: none; font-size: 16px; width: 25%; display: inline-block; text-align: center;">Short-Range Prediction</a>
+  <br>
 <!-- Leaflet Map -->
 <div id="map"></div>
 
