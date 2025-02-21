@@ -5,16 +5,22 @@ async function getForecast() {
     alert("Please enter a Reach ID.");
     return;
   }
+  
+  const forecastRange = document.getElementById('forecastRange').value; // Get selected range
+    if (!forecastRange) {
+        alert("Please select a forecast range.");
+        return;
+    }
 
   const forecastContainer = document.getElementById('forecast-container');
   forecastContainer.style.display = 'block';
 
   try {
-    const apiUrl = `https://api.water.noaa.gov/nwps/v1/reaches/${reachId}/streamflow?series=short_range`;
-    const response = await fetch(apiUrl);
-    if (!response.ok) {
-      throw new Error(`HTTP error status: ${response.status} - ${response.statusText}`);
-    }
+        const apiUrl = `https://api.water.noaa.gov/nwps/v1/reaches/${reachId}/streamflow?series=${forecastRange}`; // Use variable
+        const response = await fetch(apiUrl);
+        if (!response.ok) {
+            throw new Error(`HTTP error status: ${response.status} - ${response.statusText}`);
+        }
 
     const json_data = await response.json();
 
