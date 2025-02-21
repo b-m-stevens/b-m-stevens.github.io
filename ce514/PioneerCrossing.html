@@ -102,78 +102,10 @@ var map = L.map('map').setView([42.847960, -107.569498], 6.2); // Centered on Ce
         })(markers[i].reachId); // Pass reachId to the closure
     }
  
- // Store threshold values for each reach ID
-        const thresholds = {
-            15954494: 34.02, // Example threshold for reach ID 15954494
-            17483383: 85.18, // Example threshold for reach ID 17483383
-            22107367: 205.55,  // Example threshold for reach ID 22107367
-            15950892: 32.31,  // Example threshold for reach ID 15950892
-            18312556: 247.88, // Example threshold for reach ID 18312556
-            10093052: 40.83   // Example threshold for reach ID 10093052
-            // Add more reach IDs and thresholds as needed
-        };
-
-        let chart; // Store the chart instance
-
-        function updateChart(data, reachId) {
-            const ctx = document.getElementById('streamflowChart').getContext('2d');
-
-            if (chart) {
-                chart.destroy(); // Destroy the previous chart instance
-            }
-
-            const chartData = {
-                labels: data.map(item => item.time),
-                datasets: [{
-                    label: 'Flow Value (CFS)',
-                    data: data.map(item => parseFloat(item.flow)),
-                    borderColor: 'blue',
-                    borderWidth: 1,
-                    fill: false
-                }]
-            };
-
-            // Add the horizontal line
-            if (thresholds.hasOwnProperty(reachId)) {
-                chartData.datasets.push({
-                    label: 'Threshold',
-                    data: data.map(() => thresholds[reachId]), // Use the stored threshold
-                    borderColor: 'red',
-                    borderWidth: 1,
-                    fill: false,
-                    pointRadius: 0 // Hide points on the threshold line
-                });
-            }
-
-
-            chart = new Chart(ctx, {
-                type: 'line',
-                data: chartData,
-                options: {
-                    responsive: true,
-                    scales: {
-                        x: {
-                            title: {
-                                display: true,
-                                text: 'Timestamp'
-                            }
-                        },
-                        y: {
-                            title: {
-                                display: true,
-                                text: 'Flow Value (CFS)'
-                            }
-                        }
-                    }
-                }
-            });
-        }
-
-
+ 
         function getForecast() {
             const reachId = document.getElementById('reachIdInput').value;
-            // ... (Existing fetch and data processing logic) ...
-
+            
             fetch(apiUrl)
                 .then(response => response.json())
                 .then(data => {
@@ -188,29 +120,7 @@ var map = L.map('map').setView([42.847960, -107.569498], 6.2); // Centered on Ce
                     updateChart([], reachId); // Clear the chart
                 });
         }
-    
-    //Formatting the table
-    function updateTable(data) {
-        const tableBody = document.querySelector('#timeseries-datatable tbody');
-        tableBody.innerHTML = '';
 
-        if (data && data.length > 0) {
-            data.forEach(item => {
-                const row = tableBody.insertRow();
-                const timestampCell = row.insertCell();
-                const flowCell = row.insertCell();
-
-                timestampCell.textContent = item.time;
-                flowCell.textContent = parseFloat(item.flow).toFixed(1); // Round to 1 decimal place
-
-            });
-        } else {
-            const row = tableBody.insertRow();
-            const noDataCell = row.insertCell();
-            noDataCell.colSpan = 2;
-            noDataCell.textContent = "No data available.";
-        }
-    }
 </script>
 </body>
 <script src="nwmscript.js"></script>
