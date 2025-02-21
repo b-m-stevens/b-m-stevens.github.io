@@ -37,14 +37,18 @@ async function getForecast() {
       
       // Format timestamp (optional - customize as needed)
       const formattedTimestamp = new Date(timestamps[i]).toLocaleString(); // Example formatting
-      timestampCell.textContent = formattedTimestamp;
-      flowCell.textContent = flowValues[i];
+        timestampCell.textContent = formattedTimestamp;
 
-      //Add alternating row colors for readability
-      if (i % 2 === 0) {
-        row.classList.add('even-row'); // Add class for even rows
-      } else {
-        row.classList.add('odd-row');  // Add class for odd rows
+        // Format flow value to one decimal place
+        const formattedFlow = parseFloat(flowValues[i]).toFixed(1); // Format to 1 decimal place
+        flowCell.textContent = formattedFlow;
+
+
+        // Add alternating row colors for readability
+        if (i % 2 === 0) {
+            row.classList.add('even-row'); // Add class for even rows
+        } else {
+            row.classList.add('odd-row');  // Add class for odd rows
         }
 
     }
