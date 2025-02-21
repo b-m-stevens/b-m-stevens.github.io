@@ -53,48 +53,75 @@ async function getForecast() {
 
     }
 
+// Thresholds object: 2 year flood
+    const thresholds = {
+        15954494: 34.02, // Threshold for reach ID 15954494
+        17483383: 85.18, // Threshold for reach ID 17483383
+        22107367: 205.55,  // Threshold for reach ID 22107367
+        15950892: 32.31,  // Threshold for reach ID 15950892
+        18312556: 247.88, // Threshold for reach ID 18312556
+        10093052: 40.83   // Threshold for reach ID 10093052
     // Update or create the chart
+    };
     const ctx = document.getElementById('streamflowChart').getContext('2d');
     let chart = Chart.getChart('streamflowChart');
 
     if (chart) {
       chart.destroy();
     }
-
-    chart = new Chart(ctx, {
-      type: 'line',
-      data: {
+    
+    const chartData = {
         labels: timestamps,
         datasets: [{
-          label: 'Streamflow Forecast (Short Range)',
-          data: flowValues,
-          borderColor: 'blue',
-          borderWidth: 1,
-          fill: false
+            label: 'Streamflow Forecast (Short Range)',
+            data: flowValues,
+            borderColor: 'blue',
+            borderWidth: 1,
+            fill: false
         }]
-      },
-      options: {
-        responsive: true,
-        scales: {
-          x: {
-            display: true,
-            title: {
-              display: true,
-              text: 'Time'
+    };
+
+    // Add horizontal threshold line if it exists for the current reachId
+    if (thresholds.hasOwnProperty(reachId)) {
+        const thresholdValue = thresholds[reachId]; // Store the threshold value
+
+        chartData.datasets.push({
+            label: 'Threshold',
+            // Create an array of the threshold VALUE, not timestamps
+            data: Array(timestamps.length).fill(thresholdValue), 
+            borderColor: 'red',
+            borderWidth: 1,
+            fill: false,
+            pointRadius: 0
+        });
+    }
+    
+    chart = new Chart(ctx, {
+        type: 'line',
+        data: chartData,
+        options: {
+            responsive: true,
+            scales: {
+                x: {
+                    display: true,
+                    title: {
+                        display: true,
+                        text: 'Time'
+                    }
+                },
+                y: {
+                    display: true,
+                    title: {
+                        display: true,
+                        text: 'Streamflow'
+                    }
+                }
             }
-          },
-          y: {
-            display: true,
-            title: {
-              display: true,
-              text: 'Streamflow'
-            }
-          }
         }
-      }
     });
 
-  } catch (error) {
+}
+catch (error) {
     console.error('Error fetching or processing data:', error);
     alert("Error fetching forecast: " + error.message);
 
