@@ -45,9 +45,12 @@
   <button onclick="getForecast()" style="background-color: blue; color: white; padding: 10px 20px; border: none; float: left; border-radius: 20px; text-decoration: none; font-size: 16px; width: 25%; display: inline-block; text-align: center;">Get Forecast</button>
   <br>
   <div>
-  <a href="https://b-m-stevens.github.io/" style="background-color: blue; color: white; padding: 10px 20px; border: none; float: left; border-radius: 20px; text-decoration: none; font-size: 16px; width: 25%; display: inline-block; text-align: center;">Long-Range Prediction</a>
-  <a href="https://b-m-stevens.github.io/" style="background-color: blue; color: white; padding: 10px 20px; border: none; float: center; border-radius: 20px; text-decoration: none; font-size: 16px; width: 25%; display: inline-block; text-align: center;">Medium-Range Prediction</a>
-  <a href="https://b-m-stevens.github.io/" style="background-color: blue; color: white; padding: 10px 20px; border: none; float: right; border-radius: 20px; text-decoration: none; font-size: 16px; width: 25%; display: inline-block; text-align: center;">Short-Range Prediction</a>
+  <select id="forecastRange">
+    <option value="short_range">Short-Range</option>
+    <option value="medium_range">Medium-Range</option>
+    <option value="long_range">Long-Range</option>
+</select>
+<button onclick="getForecast()">Get Forecast</button>
   </div>
   <br>
 <!-- Leaflet Map -->
@@ -105,7 +108,8 @@ var map = L.map('map').setView([42.847960, -107.569498], 6.2); // Centered on Ce
  
         function getForecast() {
             const reachId = document.getElementById('reachIdInput').value;
-            
+            // ... (Existing fetch and data processing logic) ...
+
             fetch(apiUrl)
                 .then(response => response.json())
                 .then(data => {
