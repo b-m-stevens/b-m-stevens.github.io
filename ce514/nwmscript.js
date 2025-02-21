@@ -86,7 +86,7 @@ async function getForecast() {
         const thresholdValue = thresholds[reachId]; // Store the threshold value
 
         chartData.datasets.push({
-            label: 'Threshold',
+            label: 'Flood Stage',
             // Create an array of the threshold VALUE, not timestamps
             data: Array(timestamps.length).fill(thresholdValue), 
             borderColor: 'red',
