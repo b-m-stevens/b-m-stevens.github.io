@@ -6,6 +6,7 @@
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 </head>
+</head>
 <style>
   #timeseries-datatable {
     border-collapse: collapse; /* Collapse borders to avoid double borders */
@@ -124,6 +125,13 @@ var map = L.map('map').setView([42.847960, -107.569498], 6.2); // Centered on Ce
                     updateChart([], reachId); // Clear the chart
                 });
         }
+        
+var pioneertrail = L.tileLayer.wms('https://geoserver.hydroshare.org/geoserver/HS-bf3d9967154b4cc880f792810ea6a286/wms', {
+            layers: 'HS-bf3d9967154b4cc880f792810ea6a286:MOPI_100k_line',
+            format: 'image/png',
+            transparent: true,
+            attribution: 'Hydroshare GeoServer'
+        }).addTo(map);
 
 </script>
 </body>
