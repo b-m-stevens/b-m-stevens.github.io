@@ -172,5 +172,57 @@ var pioneertrail = L.tileLayer.wms('https://geoserver.hydroshare.org/geoserver/H
   </code></pre>
   </div>
     
+    
+  <p>To style the data tables, use the following code:</p>
+<div style="overflow:auto;
+  max-height:80px;
+  width:90%;
+  margin:0 auto;
+  border:2px solid#cccc;">
+  <pre><code>
+  &lt;style&gt;
+  #timeseries-datatable {
+    border-collapse: collapse; /* Collapse borders to avoid double borders */
+    width: 50%; /* Or a specific width */
+  }
+
+  #timeseries-datatable th, #timeseries-datatable td {
+    border: 1px solid black; /* Add border to table cells */
+    padding: 8px; /* Add some padding for readability */
+    text-align: left; /* Align text to the left (or as needed) */
+  }
+
+  #timeseries-datatable th {
+    background-color: #f2f2f2; /* Optional: Add a background color to the header */
+  }
+  
+  /* Style the map container */
+  #map {
+    width:100%;  /* of the parent container's width */
+    height: 600px; /* Or a specific height */
+    margin: 0 auto; /* Center horizontally */
+  }
+
+  /* Style the aside to not overlap the map */
+  aside {
+        width: 90% /* Adjust as needed */
+        padding: 20px;
+        box-sizing: border-box; /* Include padding in width calculation */
+  }
+
+  /* Clearfix to prevent floating issues */
+  .clearfix::after {
+        content: "";
+        display: table;
+        clear: both;
+  }
+
+  body {
+    margin: 5% /* Remove default body margins to prevent issues with width calculation */
+  }
+
+&lt;/style&gt;
+  </code></pre>
+  </div>
 </body>
 </html>
