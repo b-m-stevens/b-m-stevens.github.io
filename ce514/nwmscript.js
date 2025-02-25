@@ -32,32 +32,7 @@ async function getForecast() {
     const timestamps = streamflowData.map(item => item.validTime);
     const flowValues = streamflowData.map(item => item.flow);
 
-    // Update the table
-    const table = document.getElementById('timeseries-datatable').getElementsByTagName('tbody')[0];
-    table.innerHTML = "";
-
-    for (let i = 0; i < streamflowData.length; i++) {
-      const row = table.insertRow();
-      const timestampCell = row.insertCell();
-      const flowCell = row.insertCell();
-      
-      // Format timestamp (optional - customize as needed)
-      const formattedTimestamp = new Date(timestamps[i]).toLocaleString(); // Example formatting
-        timestampCell.textContent = formattedTimestamp;
-
-        // Format flow value to one decimal place
-        const formattedFlow = parseFloat(flowValues[i]).toFixed(1); // Format to 1 decimal place
-        flowCell.textContent = formattedFlow;
-
-
-        // Add alternating row colors for readability
-        if (i % 2 === 0) {
-            row.classList.add('even-row'); // Add class for even rows
-        } else {
-            row.classList.add('odd-row');  // Add class for odd rows
-        }
-
-    }
+    
 
 // Thresholds object: 2 year flood
     const thresholds = {
@@ -103,29 +78,67 @@ async function getForecast() {
     }
     
     chart = new Chart(ctx, {
-        type: 'line',
-        data: chartData,
-        options: {
-            responsive: true,
-            scales: {
-                x: {
-                    display: true,
-                    title: {
+            type: 'line',
+            data: chartData,
+            options: {
+                responsive: true,
+                scales: {
+                    x: {
                         display: true,
-                        text: 'Time'
-                    }
-                },
-                y: {
-                    display: true,
-                    title: {
+                        title: {
+                            display: true,
+                            text: 'Time'
+                        },
+                        // ***KEY CHANGE: Formatting the x-axis ticks***
+                        ticks: {
+                            callback: function(val, index) {
+                                const date = new Date(this.chart.data.labels[index]); // Get date from labels
+                                return date.toLocaleDateString('en-GB', { //DD/MM/YYYY
+                                    day: '2-digit',
+                                    month: '2-digit',
+                                    year: 'numeric',
+                                }) + ' ' + date.toLocaleTimeString('en-US', { // 12-hr time
+                                    hour: '2-digit',
+                                    minute: '2-digit',
+                                    hour12: true // Use 12-hour format
+                                });
+                            }
+                        }
+                    },
+                    y: {
                         display: true,
-                        text: 'Streamflow'
+                        title: {
+                            display: true,
+                            text: 'Streamflow'
+                        }
                     }
                 }
             }
-        }
-    });
+        });
+// Update the table
+    const table = document.getElementById('timeseries-datatable').getElementsByTagName('tbody')[0]; table.innerHTML = ""; // Clear the table FIRST
 
+    for (let i = 0; i < streamflowData.length; i++) {
+      const row = table.insertRow();
+      const timestampCell = row.insertCell();
+      const flowCell = row.insertCell();
+      
+      //Format timestamp (optional - customize as needed)
+      const formattedTimestamp = new Date(timestamps[i]).toLocaleString();        timestampCell.textContent = formattedTimestamp;
+
+        // Format flow value to one decimal place
+        const formattedFlow = parseFloat(flowValues[i]).toFixed(1); // Format to 1 decimal place
+        flowCell.textContent = formattedFlow;
+
+
+        // Add alternating row colors for readability
+        if (i % 2 === 0) {
+            row.classList.add('even-row'); // Add class for even rows
+        } else {
+            row.classList.add('odd-row');  // Add class for odd rows
+        }
+
+    }
 }
 catch (error) {
     console.error('Error fetching or processing data:', error);
