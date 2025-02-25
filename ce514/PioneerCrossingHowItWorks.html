@@ -5,34 +5,172 @@
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 </head>
-<body>  
+<body>  
 <aside>
-    <a href="https://b-m-stevens.github.io/ce514/PioneerCrossing.html" target="_blank" style="float: left;">
-        <img src="https://cdn0.iconfinder.com/data/icons/holidays-1-1/50/50-512.png" alt="launchpad" style="width:32px; height:32px;">
-    </a>
-      <h1>Pioneer Crossing How It Works Page</h1>
-    <p>National Water Model Forecasting Application</p>
-    <p>Updated: 24 February 2025</p>
+    <a href="https://b-m-stevens.github.io/ce514/PioneerCrossing.html" target="_blank" style="float: left;">
+        <img src="https://cdn0.iconfinder.com/data/icons/holidays-1-1/50/50-512.png" alt="launchpad" style="width:32px; height:32px;">
+    </a>
+      <h1>Pioneer Crossing How It Works Page</h1>
+    <p>National Water Model Forecasting Application</p>
+    <p>Updated: 24 February 2025</p>
 </aside>
 <p>This page is intended to describe how the Pioneer Crossing page works. Pioneer Crossing is a model that draws data from the National Weather Service Flow Prediction Service to formulate future flow predictions for the rivers that cross the trail used by the LDS Pioneers in Wyoming and Utah. This page then interprets the flow data and tells the user (you!) if the stream flows are safe to cross on the date of your crossing. Check back regularly as flow predictions are subject to change. This web application retrieves National Water Model short-range forecasts using the <a href="https://water.noaa.gov/" target=_blank>NOAA NWPS API</a>.</p>
 <p>More information about the National Water Model can found at these links below:</p>
-  <ul>
-    <li><a href="https://water.noaa.gov/about/nwm" target="_blank">NOAA NWM Overview</a></li>
-    <li><a href="https://www.sciencedirect.com/science/article/pii/S1364815224001841" target="_blank">ScienceDirect Paper</a></li>
-    <li><a href="https://onlinelibrary.wiley.com/doi/full/10.1111/1752-1688.13184" target="_blank">Wiley Online Library Paper</a></li>
-  </ul>
+  <ul>
+    <li><a href="https://water.noaa.gov/about/nwm" target="_blank">NOAA NWM Overview</a></li>
+    <li><a href="https://www.sciencedirect.com/science/article/pii/S1364815224001841" target="_blank">ScienceDirect Paper</a></li>
+    <li><a href="https://onlinelibrary.wiley.com/doi/full/10.1111/1752-1688.13184" target="_blank">Wiley Online Library Paper</a></li>
+  </ul>
 <p>For those who code, the code is detailed below.</p>
 
 <div id="how-it-works">
-    <h2>How The Code Works</h2>
-    <p>This web application retrieves National Water Model short-range forecasts using the <a href="https://water.noaa.gov/" target=_blank>NOAA NWPS API</a>.</p> 
-    <p>1)The user enters a Reach ID into the input box above, which is a unique identifier for a river segment.</p>
-    <p>2)The application then makes a request to the NOAA API for the forecast data associated with that Reach ID.</p>
-    <p>3)The retrieved data (time and streamflow values) is then displayed in a table and visualized in a chart using Chart.js.</p>  
-    <p>4)If an error occurs during the API call or data processing, an alert message is displayed to inform the user.</p>
-    <p>The API endpoint used is: `https://api.water.noaa.gov/nwps/v1/reaches/{reachId}/streamflow?series=short_range`.  The `{reachId}` portion is replaced with the Reach ID entered by the user.</p>
-    <p>The code first fetches the data from the API.  It then parses the JSON response and extracts the timestamps and flow values.  These values are then used to populate the table and create the chart. The chart is a line graph showing the streamflow over time.</p>
-  </div>
-    
+    <h2>How The Application Works</h2>
+    <p>This web application retrieves National Water Model short-range forecasts using the <a href="https://water.noaa.gov/" target=_blank>NOAA NWPS API</a>.</p> 
+    <p>1)The user enters a Reach ID into the input box above, which is a unique identifier for a river segment.</p>
+    <p>2)The application then makes a request to the NOAA API for the forecast data associated with that Reach ID.</p>
+    <p>3)The retrieved data (time and streamflow values) is then displayed in a table and visualized in a chart using Chart.js.</p>  
+    <p>4)If an error occurs during the API call or data processing, an alert message is displayed to inform the user.</p>
+    <p>The API endpoint used is: `https://api.water.noaa.gov/nwps/v1/reaches/{reachId}/streamflow?series=short_range`.  The `{reachId}` portion is replaced with the Reach ID entered by the user.</p>
+    <p>The code first fetches the data from the API.  It then parses the JSON response and extracts the timestamps and flow values.  These values are then used to populate the table and create the chart. The chart is a line graph showing the streamflow over time.</p>
+  </div>
+ 
+ <h2>How The Code Works</h2>
+<p>The code first takes uses a drop down menu to have the user select a prediction time frame to call from the National Water Model. An input box also displays the reach ID when a location is selected.</p>
+<div style="overflow:auto;
+  max-height:80px;
+  width:90%;
+  margin:0 auto;
+  border:2px solid#cccc;">
+  <pre><code>
+  &lt;input type="number" id="reachIdInput" style="width: 25%;"&gt;
+  &lt;button onclick="getForecast()" style="background-color: blue; color: white; padding: 10px 20px; border: none; float: left; border-radius: 20px; text-decoration: none; font-size: 16px; width: 25%; display: inline-block; text-align: center;"&gt;Get Forecast&lt;/button&gt;
+  &lt;br&gt;
+  &lt;div&gt;
+  &lt;select id="forecastRange"&gt;
+    &lt;option value="short_range"&gt;Short-Range&lt;/option&gt;
+    &lt;option value="medium_range"&gt;Medium-Range&lt;/option&gt;
+    &lt;option value="long_range"&gt;Long-Range&lt;/option&gt;
+  &lt;/select&gt;
+  &lt;button onclick="getForecast()"&gt;Get Forecast&lt;/button&gt;
+  &lt;/div&gt;
+  &lt;br&gt;
+  </code></pre>
+  </div>
+  
+ <p>The code then inputs a leaflet map.</p>
+<div style="overflow:auto;
+  max-height:80px;
+  width:90%;
+  margin:0 auto;
+  border:2px solid#cccc;">
+  <pre><code>
+  &lt;!-- In the header --&gt;
+&lt;script src="https://cdn.jsdelivr.net/npm/chart.js"&gt;&lt;/script&gt;
+&lt;link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" /&gt;
+&lt;script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"&gt;&lt;/script&gt;
+
+  &lt;!-- Leaflet Map --&gt;
+  &lt;div id="map"&gt;&lt;/div&gt;
+  </code></pre>
+  </div>
+  
+  <p>The code then uses a Forecast container to generate a graph and a table.</p>
+<div style="overflow:auto;
+  max-height:80px;
+  width:90%;
+  margin:0 auto;
+  border:2px solid#cccc;">
+  <pre><code>
+  &lt;!-- Forecast Container: Table and Graph Flows --&gt;
+  &lt;div id="forecast-container"&gt;
+  &lt;h2&gt;Flow Values and Graph&lt;/h2&gt;
+    &lt;table id="timeseries-datatable"&gt;
+      &lt;thead&gt;
+        &lt;tr&gt;
+          &lt;th&gt;Timestamp&lt;/th&gt;
+          &lt;th&gt;Flow value (Cubic Feet/Second)&lt;/th&gt;
+        &lt;/tr&gt;
+      &lt;/thead&gt;
+      &lt;tbody&gt;
+      &lt;/tbody&gt;
+    &lt;/table&gt;
+    &lt;canvas id="streamflowChart"&gt;&lt;/canvas&gt;
+  &lt;/div&gt;
+  
+  &lt;script src="nwmscript.js"&gt;&lt;/script&gt;
+  </code></pre>
+  </div>
+  
+ <p>Using Javascript, the webpage then defines markers for each of the stream locations that could be crossed. The map is created, and the function "getForecast()" fetches the forecast when a marker is clicked on. Finally, the shapefile with the Pioneer trail is loaded onto the map from a Hydroshare resource.</p>
+<div style="overflow:auto;
+  max-height:80px;
+  width:90%;
+  margin:0 auto;
+  border:2px solid#cccc;">
+  <pre><code>
+  &lt;script&gt;
+
+    // Define markers with popups
+    var markers = [
+      {location: [42.486453, -107.151951], popupContent: "&lt;h3&gt;Sweetwater Crossing near Independence Rock&lt;/h3&gt;", reachId: 15954494}, // Sweetwater
+      {location: [42.210454, -104.533783], popupContent: "&lt;h3&gt;North Platte River Crossing at Fort Laramie&lt;/h3&gt;", reachId: 17483383}, // North Platte
+      {location: [42.838702, -106.370093], popupContent: "&lt;h3&gt;North Platte River Crossing at Casper&lt;/h3&gt;", reachId: 22107367}, // North Platte
+      {location: [42.508857, -108.235850], popupContent: "&lt;h3&gt;Sweetwater Crossing near Sweetwater Station (Sixth Crossing)&lt;/h3&gt;", reachId: 15950892}, // Sweetwater
+      {location: [41.884110, -109.807376], popupContent: "&lt;h3&gt;Green River Crossing&lt;/h3&gt;", reachId: 18312556},  // Green River 
+      {location: [40.984249, -111.453512], popupContent: "&lt;h3&gt;Weber River Crossing at Henefer, UT&lt;/h3&gt;", reachId: 10093052},  // Weber River
+    ];
+    
+// Initialize the map
+var map = L.map('map').setView([42.847960, -107.569498], 6.2); // Centered on Center of Wyoming
+// Add a tile layer
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: '&amp;copy; &lt;a href="https://www.openstreetmap.org/copyright"&gt;OpenStreetMap&lt;/a&gt; contributors'
+    }).addTo(map);
+    // Add markers with popups to the map
+    for (var i = 0; i &lt; markers.length; i++) {
+        var marker = L.marker(markers[i].location).addTo(map);
+        (function(reachId) { // Closure to capture the correct reachId
+            marker.bindPopup(markers[i].popupContent).on('click', function() {
+                if (reachId) {
+                  document.getElementById('reachIdInput').value = reachId;
+                  getForecast();
+                } else {
+                  alert("No Reach ID associated with this location."); // Or handle it differently
+                }
+            });
+        })(markers[i].reachId); // Pass reachId to the closure
+    }
+ 
+ 
+        function getForecast() {
+            const reachId = document.getElementById('reachIdInput').value;
+            // ... (Existing fetch and data processing logic) ...
+
+            fetch(apiUrl)
+                .then(response =&gt; response.json())
+                .then(data =&gt; {
+                    // ... (Existing data processing) ...
+                    updateTable(timeSeriesData); // Update the table
+                    updateChart(timeSeriesData, reachId); // Update the chart with the threshold
+                })
+                .catch(error =&gt; {
+                    console.error("Error fetching data:", error);
+                    // Handle errors (e.g., display an error message)
+                    updateTable([]); // Clear the table
+                    updateChart([], reachId); // Clear the chart
+                });
+        }
+        
+var pioneertrail = L.tileLayer.wms('https://geoserver.hydroshare.org/geoserver/HS-bf3d9967154b4cc880f792810ea6a286/wms', {
+            layers: 'HS-bf3d9967154b4cc880f792810ea6a286:MOPI_100k_line',
+            format: 'image/png',
+            transparent: true,
+            attribution: 'Hydroshare GeoServer'
+        }).addTo(map);
+
+&lt;/script&gt;
+  </code></pre>
+  </div>
+    
 </body>
 </html>
