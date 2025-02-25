@@ -22,9 +22,35 @@
   #timeseries-datatable th {
     background-color: #f2f2f2; /* Optional: Add a background color to the header */
   }
+  
+  /* Style the map container */
+  #map {
+    width:100%;  /* of the parent container's width */
+    height: 600px; /* Or a specific height */
+    margin: 0 auto; /* Center horizontally */
+  }
+
+  /* Style the aside to not overlap the map */
+  aside {
+        width: 90% /* Adjust as needed */
+        padding: 20px;
+        box-sizing: border-box; /* Include padding in width calculation */
+  }
+
+  /* Clearfix to prevent floating issues */
+  .clearfix::after {
+        content: "";
+        display: table;
+        clear: both;
+  }
+
+  body {
+    margin: 5% /* Remove default body margins to prevent issues with width calculation */
+  }
+
 </style>
 <body>  
-<aside>
+<aside class="clearfix">
     <a href="https://b-m-stevens.github.io/ce514" target="_blank" style="float: left;">
         <img src="https://icons.iconarchive.com/icons/johanchalibert/mac-osx-yosemite/512/launchpad-icon.png" alt="launchpad" style="width:32px; height:32px;">
     </a>
