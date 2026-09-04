@@ -3,6 +3,7 @@ Two sets of python code (one for all crashes and one for VRU crashes) were devel
 ### C.1  All Crash Analysis Python Code
 <details>
 <summary>Click to view C.1 Python Code</summary>
+
 ```python
 #All Crashes Analysis
 import geopandas as gpd
@@ -115,6 +116,7 @@ ________________________________________________________________________________
 ### C.2  VRU Crash Analysis Python Code
 <details>
 <summary>Click to view C.2 Python Code</summary>
+
 ```python
 #Pedestrian Crashes Analysis
 import geopandas as gpd
