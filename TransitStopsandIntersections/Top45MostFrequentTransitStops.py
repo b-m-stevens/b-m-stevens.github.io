@@ -1,4 +1,4 @@
-#This python code was developed to find the top 45 transit stops with the highest crash frequencies and create maps and histograms that depict the relationships between the crashes and the transit stops. The histogram output also shows the nearest intersection location.
+# This python code was developed to find the top 45 transit stops with the highest crash frequencies and create maps and histograms that depict the relationships between the crashes and the transit stops. The histogram output also shows the nearest intersection location.
 
 import pandas as pd
 import matplotlib.pyplot as plt
