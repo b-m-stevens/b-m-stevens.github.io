@@ -1,0 +1,1 @@
+This python code was developed to find the top 45 transit stops and intersections with the highest crash frequencies. The code takes .csv files with latitude and longitude values of all crashes, VRU crashes, transit stops, and intersections as input. This code projected all the latitude and longitude data into WGS84 projection for cohesion.
