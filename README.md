@@ -13,5 +13,5 @@ The directory is organized into the following appendices:
 - [Combined Crashes, Transit Stops, and Intersections Map Python Code](code/maps/combined_map.py)
 
 ## Appendix C: STATISTICAL MODEL R CODE
-- [1,400 ft. Analysis R Code](StatisticalModelRCode/1400ft_analysis.R)
-- [250 ft. Analysis R Code](StatisticalModelRCode/250ft_analysis.R)
+- [1,400 ft. Analysis R Code](StatisticalModelRCode/1400ftAnalysis.R)
+- [250 ft. Analysis R Code](StatisticalModelRCode/250ftAnalysis.R)
