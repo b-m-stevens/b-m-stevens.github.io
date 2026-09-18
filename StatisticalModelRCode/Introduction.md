@@ -1,0 +1,3 @@
+This appendix contains the R code that runs the logistic regression analysis for the 1,400 ft. and 250 ft. analysis. The R code is used to examine what factors had a significant impact on VRU-related crashes. R Studio (R Foundation for Statistical Computing 2025) was used to run all models. The code takes a dependent variable (VRU crashes), independent variables and crash datasets, then calculates the relationship between different variables and the likelihood of a crash involving a VRU, thus showing which factors strongly contribute to an increased VRU crash risk. 
+
+R Foundation for Statistical Computing. 2025. R: A language and environment for statistical computing (Version 2026.01.1+403). [Computer Program]. R Foundation for Statistical Computing, Vienna, Austria.
